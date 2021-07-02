@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files\Decomp">
+      <UniqueIdentifier>{5752cfe1-017c-4892-8099-074e9bcd5096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shp">
+      <UniqueIdentifier>{5e55220f-fce8-4917-82bd-8eaa0fb43fc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Decomp">
+      <UniqueIdentifier>{2187c9a7-43bd-4eba-ae6f-85365f2530b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shp">
+      <UniqueIdentifier>{19f55a34-a6ff-4122-9ad8-327e33b42a1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\img">
+      <UniqueIdentifier>{8aa17057-d74c-4c3a-8b65-ef85b1163a16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="meteowizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSG_navigation_v1.02.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="selectcolorbutton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cntrsitemdelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="datec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dwtopen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="painter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="region.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shaperead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shpproc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="supl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CACCoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CACDecoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CACModel.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\T4\Src\CBitBuffer.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\Src\CBuffer.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CHcodec.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CHOptim.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CHufftables.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\Src\CImage.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJBlock.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJPEGDecoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJPEGLossLessCoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJPEGLossyCoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CompressJPEG.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\T4\Src\CompressT4.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CompressWT.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\Src\CQualityMeasures.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\JPEG\Src\CQuantizationTable.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CVLCCoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CVLCDecoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CWBlock.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CWTCoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\WT\Src\CWTDecoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\DISE\CxRITAnnotation.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\DISE\CxRITFile.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\DISE\CxRITFileHeaderRecords.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\DISE\ErrorHandling.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\T4\Src\T4Coder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\T4\Src\T4Codes.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\COMP\T4\Src\T4Decoder.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\DISE\TimeSpan.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="2.06\DISE\UTCTime.cpp">
+      <Filter>Source Files\Decomp</Filter>
+    </ClCompile>
+    <ClCompile Include="wizparams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapelib\dbfopen.c">
+      <Filter>Source Files\Shp</Filter>
+    </ClCompile>
+    <ClCompile Include="shapelib\safileio.c">
+      <Filter>Source Files\Shp</Filter>
+    </ClCompile>
+    <ClCompile Include="shapelib\shpopen.c">
+      <Filter>Source Files\Shp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MSG_navigation_v1.02.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="selectcolorbutton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="cntrsitemdelegate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="datec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dwtopen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="painter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="region.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shaperead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shpproc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="supl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\Bitlevel.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CACCoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CACDecoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CACModel.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\T4\Inc\CBitBuffer.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\CBlock.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\CBuffer.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CDataField.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CHcodec.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CHOptim.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CHufftables.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\CImage.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJBlock.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGCoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGDecoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGLossLessCoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGLossyCoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\Compress.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CompressJPEG.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\T4\Inc\CompressT4.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CompressWT.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\CQualityInfo.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\CQualityMeasures.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CQuantizationTable.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CSpacecraftID.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CSpectralChannelID.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CVLCCodec.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CVLCCoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CVLCDecoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CWBlock.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CWTCoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\CWTDecoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CxRITAnnotation.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CxRITFile.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CxRITFileCompressed.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CxRITFileDecompressed.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\CxRITFileHeaderRecords.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\ErrorHandling.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\GSDS_Volume_F.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\gsds_volume_f_nbo.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\JPEG\Inc\JPEGConst.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\MSGTime.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\MSGTime_impl.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\Inc\RMAErrorHandling.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\SmartPtr.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\T4\Inc\T4Coder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\T4\Inc\T4Codes.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\T4\Inc\T4Decoder.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\TimeSpan.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\Types.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\COMP\WT\Inc\WTConst.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\utctime.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="2.06\DISE\yyyymmddhhmm.h">
+      <Filter>Header Files\Decomp</Filter>
+    </ClInclude>
+    <ClInclude Include="wizparams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapelib\shapefil.h">
+      <Filter>Header Files\Shp</Filter>
+    </ClInclude>
+    <ClInclude Include="local_str.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Resource.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <None Include="map.qml">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="meteowizard.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+</Project>

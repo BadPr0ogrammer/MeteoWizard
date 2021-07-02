@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0A5972D4-04AC-309E-9E42-6A72800D07FF}</ProjectGuid>
+    <RootNamespace>MeteoWizard</RootNamespace>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <ProjectName>MeteoWizard</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <PlatformToolset>v142</PlatformToolset>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>MeteoWizard</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <PlatformToolset>v142</PlatformToolset>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>MeteoWizard</PrimaryOutput>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>debug\</OutDir>
+    <IntDir>debug\</IntDir>
+    <TargetName>MeteoWizard</TargetName>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>release\</OutDir>
+    <IntDir>release\</IntDir>
+    <TargetName>MeteoWizard</TargetName>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>5.12.11_msvc2017_64</QtInstall>
+    <QtModules>core;network;gui;widgets;location;qml;positioning;quickwidgets;quick</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>msvc2019_64</QtInstall>
+    <QtModules>core;network;gui;widgets;location;qml;positioning;quickwidgets;quick</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;..\opencv-3.4.10\build;..\opencv-3.4.10\modules\core\include;..\opencv-3.4.10\modules\imgproc\include;..\opencv-3.4.10\modules\imgcodecs\include;..\opencv-3.4.10\modules\highgui\include;..\opencv-3.4.10\modules\videoio\include;release;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>release\</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_POSITIONINGQUICK_LIB;QT_QMLMODELS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>
+      </ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(QTDIR)\lib\Qt5PositioningQuick.lib;$(QTDIR)\lib\Qt5QmlModels.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>$(OutDir)\MeteoWizard.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_QUICKWIDGETS_LIB;QT_WIDGETS_LIB;QT_LOCATION_LIB;QT_POSITIONINGQUICK_LIB;QT_QUICK_LIB;QT_GUI_LIB;QT_QMLMODELS_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_POSITIONING_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <QtMoc>
+      <CompilerFlavor>msvc</CompilerFlavor>
+      <Include>./$(Configuration)/moc_predefs.h</Include>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(Configuration)</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
+    <QtRcc>
+      <InitFuncName>Resource</InitFuncName>
+      <Compression>default</Compression>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <QtRccDir>$(Configuration)</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;shapelib;..\opencv-3.4.14\build;..\opencv-3.4.14\modules\core\include;..\opencv-3.4.14\modules\imgproc\include;..\opencv-3.4.14\modules\imgcodecs\include;..\opencv-3.4.14\modules\highgui\include;..\opencv-3.4.14\modules\videoio\include;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>debug\</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>LOCAL_RU;_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_POSITIONINGQUICK_LIB;QT_QMLMODELS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opencv_core3414d.lib;opencv_imgcodecs3414d.lib;opencv_imgproc3414d.lib;opencv_highgui3414d.lib;$(QTDIR)\lib\Qt5PositioningQuickd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\oldman\work\opencv-3.4.14\build\lib\Debug;C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\MeteoWizard.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_QUICKWIDGETS_LIB;QT_WIDGETS_LIB;QT_LOCATION_LIB;QT_POSITIONINGQUICK_LIB;QT_QUICK_LIB;QT_GUI_LIB;QT_QMLMODELS_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_POSITIONING_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <QtMoc>
+      <CompilerFlavor>msvc</CompilerFlavor>
+      <Include>./$(Configuration)/moc_predefs.h</Include>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(Configuration)</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
+    <QtRcc>
+      <InitFuncName>Resource</InitFuncName>
+      <Compression>default</Compression>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <QtRccDir>$(Configuration)</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="2.06\COMP\WT\Src\CACCoder.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CACDecoder.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CACModel.cpp" />
+    <ClCompile Include="2.06\COMP\T4\Src\CBitBuffer.cpp" />
+    <ClCompile Include="2.06\COMP\Src\CBuffer.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CHOptim.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CHcodec.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CHufftables.cpp" />
+    <ClCompile Include="2.06\COMP\Src\CImage.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJBlock.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJPEGDecoder.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJPEGLossLessCoder.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CJPEGLossyCoder.cpp" />
+    <ClCompile Include="2.06\COMP\Src\CQualityMeasures.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CQuantizationTable.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CVLCCoder.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CVLCDecoder.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CWBlock.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CWTCoder.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CWTDecoder.cpp" />
+    <ClCompile Include="2.06\COMP\JPEG\Src\CompressJPEG.cpp" />
+    <ClCompile Include="2.06\COMP\T4\Src\CompressT4.cpp" />
+    <ClCompile Include="2.06\COMP\WT\Src\CompressWT.cpp" />
+    <ClCompile Include="2.06\DISE\CxRITAnnotation.cpp" />
+    <ClCompile Include="2.06\DISE\CxRITFile.cpp" />
+    <ClCompile Include="2.06\DISE\CxRITFileHeaderRecords.cpp" />
+    <ClCompile Include="meteowizard.cpp" />
+    <ClCompile Include="2.06\DISE\ErrorHandling.cpp" />
+    <ClCompile Include="MSG_navigation_v1.02.cpp" />
+    <ClCompile Include="selectcolorbutton.cpp" />
+    <ClCompile Include="2.06\COMP\T4\Src\T4Coder.cpp" />
+    <ClCompile Include="2.06\COMP\T4\Src\T4Codes.cpp" />
+    <ClCompile Include="2.06\COMP\T4\Src\T4Decoder.cpp" />
+    <ClCompile Include="2.06\DISE\TimeSpan.cpp" />
+    <ClCompile Include="2.06\DISE\UTCTime.cpp" />
+    <ClCompile Include="cntrsitemdelegate.cpp" />
+    <ClCompile Include="datec.cpp" />
+    <ClCompile Include="dwtopen.cpp" />
+    <ClCompile Include="painter.cpp" />
+    <ClCompile Include="region.cpp" />
+    <ClCompile Include="shapelib\dbfopen.c" />
+    <ClCompile Include="shapelib\safileio.c" />
+    <ClCompile Include="shapelib\shpopen.c" />
+    <ClCompile Include="shaperead.cpp" />
+    <ClCompile Include="shpproc.cpp" />
+    <ClCompile Include="supl.cpp" />
+    <ClCompile Include="tpl.cpp" />
+    <ClCompile Include="wizparams.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2.06\COMP\Inc\Bitlevel.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CACCoder.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CACDecoder.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CACModel.h" />
+    <ClInclude Include="2.06\COMP\T4\Inc\CBitBuffer.h" />
+    <ClInclude Include="2.06\COMP\Inc\CBlock.h" />
+    <ClInclude Include="2.06\COMP\Inc\CBuffer.h" />
+    <ClInclude Include="2.06\DISE\CDataField.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CHOptim.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CHcodec.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CHufftables.h" />
+    <ClInclude Include="2.06\COMP\Inc\CImage.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJBlock.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGCoder.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGDecoder.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGLossLessCoder.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CJPEGLossyCoder.h" />
+    <ClInclude Include="2.06\COMP\Inc\CQualityInfo.h" />
+    <ClInclude Include="2.06\COMP\Inc\CQualityMeasures.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CQuantizationTable.h" />
+    <ClInclude Include="2.06\DISE\CSpacecraftID.h" />
+    <ClInclude Include="2.06\DISE\CSpectralChannelID.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CVLCCodec.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CVLCCoder.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CVLCDecoder.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CWBlock.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CWTCoder.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CWTDecoder.h" />
+    <ClInclude Include="2.06\COMP\Inc\Compress.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\CompressJPEG.h" />
+    <ClInclude Include="2.06\COMP\T4\Inc\CompressT4.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\CompressWT.h" />
+    <ClInclude Include="2.06\DISE\CxRITAnnotation.h" />
+    <ClInclude Include="2.06\DISE\CxRITFile.h" />
+    <ClInclude Include="2.06\DISE\CxRITFileCompressed.h" />
+    <ClInclude Include="2.06\DISE\CxRITFileDecompressed.h" />
+    <ClInclude Include="2.06\DISE\CxRITFileHeaderRecords.h" />
+    <ClInclude Include="2.06\DISE\ErrorHandling.h" />
+    <ClInclude Include="2.06\DISE\GSDS_Volume_F.h" />
+    <ClInclude Include="2.06\COMP\JPEG\Inc\JPEGConst.h" />
+    <ClInclude Include="2.06\DISE\MSGTime.h" />
+    <ClInclude Include="2.06\DISE\MSGTime_impl.h" />
+    <ClInclude Include="local_str.h" />
+    <ClInclude Include="shapelib\shapefil.h" />
+    <ClInclude Include="wizparams.h" />
+    <QtMoc Include="meteowizard.h" />
+    <ClInclude Include="MSG_navigation_v1.02.h" />
+    <ClInclude Include="2.06\COMP\Inc\RMAErrorHandling.h" />
+    <QtMoc Include="selectcolorbutton.h">
+    </QtMoc>
+    <ClInclude Include="2.06\DISE\SmartPtr.h" />
+    <ClInclude Include="2.06\COMP\T4\Inc\T4Coder.h" />
+    <ClInclude Include="2.06\COMP\T4\Inc\T4Codes.h" />
+    <ClInclude Include="2.06\COMP\T4\Inc\T4Decoder.h" />
+    <ClInclude Include="2.06\DISE\TimeSpan.h" />
+    <ClInclude Include="2.06\DISE\Types.h" />
+    <ClInclude Include="2.06\COMP\WT\Inc\WTConst.h" />
+    <QtMoc Include="cntrsitemdelegate.h">
+    </QtMoc>
+    <ClInclude Include="datec.h" />
+    <ClInclude Include="dwtopen.h" />
+    <ClInclude Include="2.06\DISE\gsds_volume_f_nbo.h" />
+    <ClInclude Include="inc.h" />
+    <ClInclude Include="painter.h" />
+    <ClInclude Include="region.h" />
+    <ClInclude Include="shaperead.h" />
+    <ClInclude Include="shpproc.h" />
+    <ClInclude Include="supl.h" />
+    <ClInclude Include="tpl.h" />
+    <ClInclude Include="2.06\DISE\utctime.h" />
+    <ClInclude Include="2.06\DISE\yyyymmddhhmm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_predefs.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Resource.qrc">
+    </QtRcc>
+    <None Include="map.qml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
