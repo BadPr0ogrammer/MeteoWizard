@@ -60,6 +60,9 @@
     <Filter Include="Resource Files\img">
       <UniqueIdentifier>{8aa17057-d74c-4c3a-8b65-ef85b1163a16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{9a1ffc7d-0147-4948-947f-5e85ce995936}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="meteowizard.cpp">
@@ -205,6 +208,12 @@
     </ClCompile>
     <ClCompile Include="shapelib\shpopen.c">
       <Filter>Source Files\Shp</Filter>
+    </ClCompile>
+    <ClCompile Include="atmrad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wizardrgb.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +421,12 @@
     <ClInclude Include="local_str.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="atmrad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadPrologue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -433,5 +448,10 @@
     <QtMoc Include="meteowizard.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="settings.json">
+      <Filter>other</Filter>
+    </None>
   </ItemGroup>
 </Project>

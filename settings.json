@@ -1,1 +1,148 @@
-{"arrow_color":"#00ff00","arrow_scale":2,"arrow_width":1,"channel_idx":4,"fname_pref":"Test","jpg_path":"debug/Data/Images","msg_num":4,"msg_path":"debug/Data/MSG","shp_files":[{"dash":0,"dbf_field":"name;pop_max","font_face":"Arial","font_size":10,"line_color":"#ff0000","line_width":1,"shp_name":"ne_10m_coastline.shp","text_color":"#0000ff"},{"dash":0,"dbf_field":"name;pop_max","font_face":"Arial","font_size":10,"line_color":"#ffff00","line_width":1,"shp_name":"ne_10m_populated_places_simple.shp","text_color":"#00ff00"}],"shp_path":"debug/Data/Shp","start_date":"2019-11-21 11:45","stop_date":"2019-11-21 12:00"}
+{
+  "arrow_color": "#00ff00",
+  "arrow_scale": 2,
+  "arrow_width": 1,
+  "channel_idx": 4,
+  "fname_pref": "Test",
+  "jpg_path": "debug/Data/Images",
+  "msg_num": 3,
+  "msg_path": "debug/Data/MSG",
+  "region_height": 12,
+  "region_step": 0.20000000298023224,
+  "region_width": 28,
+  "region_x": 12,
+  "region_y": 41,
+  "rgb": true,
+  "rgb_params": [
+    {
+      "dimin": 9,
+      "gamma": 1,
+      "subtr": 8,
+      "thres_max": 2,
+      "thres_min": -4
+    },
+    {
+      "dimin": 8,
+      "gamma": 1,
+      "subtr": 7,
+      "thres_max": 5,
+      "thres_min": -4
+    },
+    {
+      "dimin": 8,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 303,
+      "thres_min": 243
+    },
+    {
+      "dimin": 5,
+      "gamma": 1,
+      "subtr": 6,
+      "thres_max": 0,
+      "thres_min": -25
+    },
+    {
+      "dimin": 7,
+      "gamma": 1,
+      "subtr": 8,
+      "thres_max": 5,
+      "thres_min": -40
+    },
+    {
+      "dimin": 5,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 208,
+      "thres_min": 243
+    },
+    {
+      "dimin": 9,
+      "gamma": 1,
+      "subtr": 8,
+      "thres_max": 2,
+      "thres_min": -4
+    },
+    {
+      "dimin": 8,
+      "gamma": 2.5,
+      "subtr": 7,
+      "thres_max": 15,
+      "thres_min": 0
+    },
+    {
+      "dimin": 8,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 289,
+      "thres_min": 261
+    },
+    {
+      "dimin": 2,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 10000,
+      "thres_min": 0
+    },
+    {
+      "dimin": 4,
+      "gamma": 1.5,
+      "subtr": 0,
+      "thres_max": 6000,
+      "thres_min": 0
+    },
+    {
+      "dimin": 8,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 303,
+      "thres_min": 243
+    },
+    {
+      "dimin": 3,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 10000,
+      "thres_min": 0
+    },
+    {
+      "dimin": 2,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 10000,
+      "thres_min": 0
+    },
+    {
+      "dimin": 1,
+      "gamma": 1,
+      "subtr": 0,
+      "thres_max": 10000,
+      "thres_min": 0
+    }
+  ],
+  "shp_files": [
+    {
+      "dash": 0,
+      "dbf_field": "name;pop_max",
+      "font_face": "Arial",
+      "font_size": 10,
+      "line_color": "#ff0000",
+      "line_width": 1,
+      "shp_name": "ne_10m_coastline.shp",
+      "text_color": "#0000ff"
+    },
+    {
+      "dash": 0,
+      "dbf_field": "name;pop_max",
+      "font_face": "Arial",
+      "font_size": 10,
+      "line_color": "#ffff00",
+      "line_width": 1,
+      "shp_name": "ne_10m_populated_places_simple.shp",
+      "text_color": "#00ff00"
+    }
+  ],
+  "shp_path": "debug/Data/Shp",
+  "start_date": "2016-05-31 12:45",
+  "stop_date": "2016-05-31 13:00"
+}

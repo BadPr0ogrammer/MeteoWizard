@@ -33,4 +33,23 @@ if (_y < _y_min) _y_min = _y
 #define DASH_LINE_NAME_NUM 3
 extern const char* dash_line_names[DASH_LINE_NAME_NUM];
 
-extern const char* channel_tags[];
+enum msg_channel_t {
+	T_NONE,
+	T_00_6,
+	T_00_8,
+	T_01_6,
+	T_03_9,
+	T_06_2,
+	T_07_3,
+	T_08_7,
+	T_10_8,
+	T_12_0,
+	T_13_4,
+	//T_HRV,
+	T_NUM,
+};
+
+extern const char* channel_tags[T_NUM];
+
+#define RGB_PRESET_NUM  5
+#define LAYER_NUM (T_NUM + RGB_PRESET_NUM)

@@ -27,15 +27,16 @@
 using namespace std;
 using namespace cv;
 
-const char* channel_tags[] = { "VIS006", "VIS008", "IR_016", "IR_039", "WV_062", "WV_073", "IR_087", "IR_097", "IR_108", "IR_120", "IR_134" };
+const char* channel_tags[T_NUM] = { "", "VIS006", "VIS008", "IR_016", "IR_039", "WV_062", "WV_073", "IR_087", "IR_108", "IR_120", "IR_134"};//"IR_097", 
 
 MeteoWizard::MeteoWizard(QWidget* parent) : QWizard(parent),
 m_msg_path(nullptr), m_jpg_path(nullptr), m_shp_path(nullptr), m_fname_pref(nullptr), m_msg_type(nullptr), m_channel_tag(nullptr), m_calendar0(nullptr), m_calendar1(nullptr),
 m_minutes0(nullptr), m_minutes1(nullptr), m_arrow_scale(nullptr), m_arrow_color(nullptr), m_arrow_width(nullptr), m_region_step(nullptr), m_model_cntrs(nullptr), m_view_cntrs(nullptr),
-m_osm(nullptr), m_dates(new std::vector<date_c>()), m_shp_files(new std::vector<shp_c*>()), m_ll_region(nullptr), m_wiz_params(new wiz_params_c()), m_json(false)
+m_osm(nullptr), m_dates(new std::vector<date_c>()), m_shp_files(new std::vector<shp_c*>()), m_wiz_params(new wiz_params_c())
 {
 	m_wiz_params->working_dir = QDir::currentPath();
-	m_json = m_wiz_params->read_settings(*m_wiz_params, *m_shp_files, "settings.json");
+	m_ll_region = new ll_region_c();
+	m_json = m_wiz_params->read_settings(*m_wiz_params, m_ll_region, *m_shp_files, "settings.json");
 }
 
 QWizardPage* MeteoWizard::createIntroPage()
@@ -61,7 +62,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 			m_msg_path->setFixedWidth(400);
 
 			QPushButton* btn = new QPushButton(str_select);
-			QObject::connect(btn, &QPushButton::clicked, [=]() {
+			connect(btn, &QPushButton::clicked, [=]() {
 				QString directory = QFileDialog::getExistingDirectory(NULL, str_input_files_msg_path, QDir::currentPath());
 				if (!directory.isEmpty())
 					m_msg_path->setText(directory);
@@ -76,7 +77,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 			m_jpg_path->setFixedWidth(400);
 
 			QPushButton* btn = new QPushButton(str_select);
-			QObject::connect(btn, &QPushButton::clicked, [=]() {
+			connect(btn, &QPushButton::clicked, [=]() {
 				QString directory = QFileDialog::getExistingDirectory(NULL, str_output_files_jpg_path, QDir::currentPath());
 				if (!directory.isEmpty())
 					m_jpg_path->setText(directory);
@@ -91,7 +92,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 			m_shp_path->setFixedWidth(400);
 
 			QPushButton* btn = new QPushButton(str_select);
-			QObject::connect(btn, &QPushButton::clicked, [&]() {
+			connect(btn, &QPushButton::clicked, [=]() {
 				QString directory = QFileDialog::getExistingDirectory(NULL, str_input_files_shp_path, QDir::currentPath());
 				if (!directory.isEmpty())
 					m_shp_path->setText(directory);
@@ -112,7 +113,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		hbox->addWidget(new QLabel(str_channel), 5, 0);
 		m_channel_tag = new QComboBox;
 		m_channel_tag->setFixedWidth(150);
-		for (int i = 0; i < _countof(channel_tags); i++)
+		for (int i = 1; i < _countof(channel_tags); i++)
 			m_channel_tag->addItem(channel_tags[i]);
 		m_channel_tag->setCurrentIndex(4);
 		hbox->addWidget(m_channel_tag, 5, 1);
@@ -174,6 +175,7 @@ QWizardPage* MeteoWizard::createDateTimePage()
 	page->setTitle(str_datetime_page_title);
 
 	QHBoxLayout* hbox = new QHBoxLayout;
+	hbox->setContentsMargins(12, 12, 12, 12);
 
 	if (!m_json) {
 		m_wiz_params->start = date_c(2019, 11, 21, 10, 0);
@@ -232,8 +234,10 @@ QWizardPage* MeteoWizard::createShapePage()
 	page->setTitle(str_visual_style);
 
 	QGridLayout* layout = new QGridLayout;
+	layout->setContentsMargins(12, 12, 12, 12);
 	{
 		QVBoxLayout* vbox2 = new QVBoxLayout;
+		vbox2->setContentsMargins(12, 12, 12, 12);
 
 		QLabel* lab1 = new QLabel(str_vector_layers);
 		vbox2->addWidget(lab1);
@@ -271,7 +275,7 @@ QWizardPage* MeteoWizard::createShapePage()
 		vbox2->addWidget(m_view_cntrs);
 		{
 			QHBoxLayout* hbox = new QHBoxLayout;
-			hbox->setSpacing(6);
+			hbox->setContentsMargins(12, 12, 12, 12);
 			hbox->addStretch();
 
 			QPushButton* add = new QPushButton(QIcon(QPixmap(":/images/add3.png")), "");
@@ -279,7 +283,7 @@ QWizardPage* MeteoWizard::createShapePage()
 			add->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 			hbox->addWidget(add);
 			hbox->setAlignment(add, Qt::AlignRight);
-			QObject::connect(add, &QPushButton::clicked, [=]() {
+			connect(add, &QPushButton::clicked, [=]() {
 				QStringList fnames = QFileDialog::getOpenFileNames(NULL, str_load, "", "Shp (*.shp)");
 				if (fnames.isEmpty() || fnames[0].isEmpty())
 					return;
@@ -327,7 +331,7 @@ QWizardPage* MeteoWizard::createShapePage()
 			rem->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 			hbox->addWidget(rem);
 			hbox->setAlignment(rem, Qt::AlignRight);
-			QObject::connect(rem, &QPushButton::clicked, [=]() {
+			connect(rem, &QPushButton::clicked, [=]() {
 				QModelIndexList list = m_view_cntrs->selectionModel()->selectedIndexes();
 				if (!list.size())
 					return;
@@ -445,13 +449,13 @@ QWizardPage* MeteoWizard::createRegionPage()
 
 	QVBoxLayout* layout = new QVBoxLayout;
 
-	m_ll_region = new ll_region_c();
-	m_ll_region->m_x = 0;
-	m_ll_region->m_width = 40;
-	m_ll_region->m_y = 30;
-	m_ll_region->m_height = 20;
-	m_ll_region->m_ll_step = 2.0;
-
+	if (!m_json) {
+		m_ll_region->m_x = 0;
+		m_ll_region->m_width = 40;
+		m_ll_region->m_y = 30;
+		m_ll_region->m_height = 20;
+		m_ll_region->m_ll_step = 2.0;
+	}
 	m_osm = quick_map_create(NULL, m_ll_region->m_x, m_ll_region->m_x + m_ll_region->m_width, m_ll_region->m_y + m_ll_region->m_height, m_ll_region->m_y);
 	layout->addWidget((QWidget*)m_osm);
 
@@ -471,7 +475,7 @@ QWizardPage* MeteoWizard::createRegionPage()
 	return page;
 }
 
-cv::Mat* open_msg(const wchar_t* fname, ll_region_c* ll_region)
+cv::Mat* MeteoWizard::openMsg(const wchar_t* fname, ll_region_c* ll_region)
 {
 	int n0 = 0, n1 = 0;
 	cv::Mat* msg = dwtOpen(fname, ll_region->m_rect, n0, n1);
@@ -561,7 +565,7 @@ void MeteoWizard::accept()
 	}
 
 	m_wiz_params->channel_idx = m_channel_tag->currentIndex();
-	QString channel = channel_tags[m_wiz_params->channel_idx];
+	QString channel = channel_tags[m_wiz_params->channel_idx + 1];
 
 	m_wiz_params->arrow_color = m_arrow_color->getColor();
 
@@ -596,12 +600,12 @@ void MeteoWizard::accept()
 
 	if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
 		qDebug() << str_error_blank << "SetCurrentDirectory 1\n";
-
+	/*
 	date_c& d0 = (*m_dates)[0];
-
+	
 	wchar_t buf[100];
 	swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d0.m_year, d0.m_mon, d0.m_day, d0.m_hour, d0.m_mn);//L"WV_062"
-	cv::Mat* img0 = open_msg(buf, m_ll_region);
+	cv::Mat* img0 = openMsg(buf, m_ll_region);
 	SuplDebugMat(img0);
 
 	int dt_mn = 0;
@@ -612,7 +616,7 @@ void MeteoWizard::accept()
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 2\n";
 
-		cv::Mat* img1 = open_msg(buf, m_ll_region);
+		cv::Mat* img1 = openMsg(buf, m_ll_region);
 		SuplDebugMat(img1);
 
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->jpg_path))
@@ -634,13 +638,16 @@ void MeteoWizard::accept()
 		img0 = img1;
 	}
 	delete img0;
+	*/
+	if (m_rgb_flag->isChecked())
+		makeRgb();
 	
 	QGuiApplication::restoreOverrideCursor();
 	QGuiApplication::processEvents();
 	QMessageBox::information(nullptr, "MeteoWizard", str_generation_succeeded);
 
 	QDir::setCurrent(m_wiz_params->working_dir);
-	if (!m_wiz_params->write_settings(*m_wiz_params, *m_shp_files, "settings.json"))
+	if (!m_wiz_params->write_settings(*m_wiz_params, m_ll_region, *m_shp_files, "settings.json"))
 		qDebug() << str_error_blank << str_saving_nocap << " JSON\n";
 
 	QDialog::accept();
@@ -657,6 +664,7 @@ int main(int argc, char* argv[])
 	dw->addPage(dw->createDateTimePage());
 	dw->addPage(dw->createShapePage());
 	dw->addPage(dw->createRegionPage());
+	dw->addPage(dw->createPostProcPage());
 
 	dw->setWindowTitle(str_data_processing_wizard);
 	dw->resize(QSize(700, 500));

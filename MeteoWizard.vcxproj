@@ -138,7 +138,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;shapelib;..\opencv-3.4.14\build;..\opencv-3.4.14\modules\core\include;..\opencv-3.4.14\modules\imgproc\include;..\opencv-3.4.14\modules\imgcodecs\include;..\opencv-3.4.14\modules\highgui\include;..\opencv-3.4.14\modules\videoio\include;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;MSG\include;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;shapelib;..\opencv-3.4.14\build;..\opencv-3.4.14\modules\core\include;..\opencv-3.4.14\modules\imgproc\include;..\opencv-3.4.14\modules\imgcodecs\include;..\opencv-3.4.14\modules\highgui\include;..\opencv-3.4.14\modules\videoio\include;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -218,6 +218,7 @@
     <ClCompile Include="2.06\DISE\CxRITAnnotation.cpp" />
     <ClCompile Include="2.06\DISE\CxRITFile.cpp" />
     <ClCompile Include="2.06\DISE\CxRITFileHeaderRecords.cpp" />
+    <ClCompile Include="atmrad.cpp" />
     <ClCompile Include="meteowizard.cpp" />
     <ClCompile Include="2.06\DISE\ErrorHandling.cpp" />
     <ClCompile Include="MSG_navigation_v1.02.cpp" />
@@ -239,6 +240,7 @@
     <ClCompile Include="shpproc.cpp" />
     <ClCompile Include="supl.cpp" />
     <ClCompile Include="tpl.cpp" />
+    <ClCompile Include="wizardrgb.cpp" />
     <ClCompile Include="wizparams.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +286,9 @@
     <ClInclude Include="2.06\COMP\JPEG\Inc\JPEGConst.h" />
     <ClInclude Include="2.06\DISE\MSGTime.h" />
     <ClInclude Include="2.06\DISE\MSGTime_impl.h" />
+    <ClInclude Include="atmrad.h" />
     <ClInclude Include="local_str.h" />
+    <ClInclude Include="ReadPrologue.h" />
     <ClInclude Include="shapelib\shapefil.h" />
     <ClInclude Include="wizparams.h" />
     <QtMoc Include="meteowizard.h" />
@@ -333,6 +337,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="settings.json" />
     <QtRcc Include="Resource.qrc">
     </QtRcc>
     <None Include="map.qml" />

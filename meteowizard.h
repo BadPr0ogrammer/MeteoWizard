@@ -5,7 +5,7 @@
 #include <QQuickWidget>
 #include <opencv2/core/core.hpp>
 
-extern const char* channel_tags[];
+#include "inc.h"
 
 class date_c;
 class shp_c;
@@ -31,6 +31,13 @@ public:
 	SelectColorButton* m_arrow_color;
 	QDoubleSpinBox* m_arrow_width;
 	QDoubleSpinBox* m_region_step;
+	QCheckBox* m_rgb_flag;
+	QComboBox* m_rgb_preset;
+	QComboBox* m_rgb_dimin[3];
+	QComboBox* m_rgb_subtr[3];
+	QDoubleSpinBox* m_thres_min[3];
+	QDoubleSpinBox* m_thres_max[3];
+	QDoubleSpinBox* m_gamma[3];
 
 	QStandardItemModel* m_model_cntrs;
 	QTableView* m_view_cntrs;
@@ -50,8 +57,11 @@ public:
 	QWizardPage* createDateTimePage();
 	QWizardPage* createShapePage();
 	QWizardPage* createRegionPage();
+	QWizardPage* createPostProcPage();
 
 	void render(const wchar_t* fname, const cv::Mat* const p0, const cv::Mat* const p1, int dt_mn);
+	cv::Mat* openMsg(const wchar_t* fname, ll_region_c* ll_region);
+	void makeRgb();
 
 protected slots:
 	void accept() override;
