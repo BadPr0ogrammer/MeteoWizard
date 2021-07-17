@@ -31,7 +31,7 @@ public:
 	
 	~shp_c();
 
-	QGraphicsItemGroup* renderShp(const ll_region_c* const rect, double sx, double sy, const cv::Mat* const mat);
+	vector<QGraphicsItemGroup*> renderShp(int num, const ll_region_c* const rect, double sx, double sy, cv::Size sz);
 	static shp_c* shpProc(QString name, const ll_region_c* const rc);
 };
 Q_DECLARE_METATYPE(shp_c);

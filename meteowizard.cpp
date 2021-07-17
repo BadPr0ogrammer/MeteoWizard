@@ -11,7 +11,7 @@
 #include <opencv2/highgui/highgui.hpp>
 
 #include "inc.h"
-#include "meteowizard.h";
+#include "meteowizard.h"
 #include "datec.h"
 #include "shaperead.h"
 #include "shpproc.h"
@@ -496,30 +496,6 @@ cv::Mat* MeteoWizard::openMsg(const wchar_t* fname, ll_region_c* ll_region)
 	return nullptr;
 }
 
-void MeteoWizard::render(const wchar_t* fname, const cv::Mat* const p0, const cv::Mat* const p1, int dt_mn)
-{
-	painter_c* pnt = new painter_c();
-	SuplDebugMat(p0);
-	pnt->drawImage((Mat_<float>*)p0);
-	
-	pnt->drawShp(m_shp_files, m_ll_region, LON_SCALE, LAT_SCALE, p0);
-
-	Mat_<float>* f0 = new Mat_<float>(p0->rows, p0->cols);
-	Mat_<float>* f1 = new Mat_<float>(p1->rows, p1->cols);
-	*f0 = *p0 * (1. / 1024);
-	*f1 = *p1 * (1. / 1024);
-
-	pnt->drawUV(f0, f1, LON_SCALE * m_ll_region->m_ll_step, LAT_SCALE * m_ll_region->m_ll_step, dt_mn, p0->cols, p0->rows, *m_wiz_params);
-	
-	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-	wstring ws = fname;
-	string s = converter.to_bytes(ws);
-
-	const char* p = s.c_str();
-	imwrite(p, *pnt->m_rgb);
-	delete pnt;
-}
-
 void MeteoWizard::accept()
 {
 	QGuiApplication::setOverrideCursor(Qt::WaitCursor);
@@ -598,31 +574,36 @@ void MeteoWizard::accept()
 			qDebug() << str_error_blank << "shpProc\n";
 	}
 
-	if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
-		qDebug() << str_error_blank << "SetCurrentDirectory 1\n";
-	/*
 	date_c& d0 = (*m_dates)[0];
-	
-	wchar_t buf[100];
-	swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d0.m_year, d0.m_mon, d0.m_day, d0.m_hour, d0.m_mn);//L"WV_062"
-	cv::Mat* img0 = openMsg(buf, m_ll_region);
-	SuplDebugMat(img0);
-
+	wchar_t msg_fname[100], jpg_fname[100], rgb_fname[100];
+	cv::Mat* img0;
+	{
+		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
+			qDebug() << str_error_blank << "SetCurrentDirectory 1\n";
+		swprintf(msg_fname, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d0.m_year, d0.m_mon, d0.m_day, d0.m_hour, d0.m_mn);//L"WV_062"
+		img0 = openMsg(msg_fname, m_ll_region);
+		SuplDebugMat(img0);
+	}
 	int dt_mn = 0;
 	for (int i = 1; i < m_dates->size(); i++) {
 		date_c& d = (*m_dates)[i];
-		swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-
+		
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 2\n";
-
-		cv::Mat* img1 = openMsg(buf, m_ll_region);
+		swprintf(msg_fname, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+		
+		cv::Mat* img1 = openMsg(msg_fname, m_ll_region);
 		SuplDebugMat(img1);
+		swprintf(jpg_fname, L"%s_%s_%d_%d_%d_%d_%d.jpg", m_wiz_params->fname_pref.utf16(), channel.utf16(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
 
+		cv::Mat* rgb = nullptr;
+		if (m_rgb_flag->isChecked()) {
+			rgb = makeRgb(d);
+			wsprintf(rgb_fname, L"%s-%04d%02d%02d%02d%02d.jpg", rgb_names_en[m_rgb_preset->currentIndex()], d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+		}
+		
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->jpg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 3\n";
-
-		swprintf(buf, L"%s_%s_%d_%d_%d_%d_%d.jpg", m_wiz_params->fname_pref.utf16(), channel.utf16(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
 
 		int daym = date_c::day_in_mon(d0.m_year, d0.m_mon);
 		if (d.m_mn > d0.m_mn)
@@ -631,17 +612,28 @@ void MeteoWizard::accept()
 			|| d.m_day == d0.m_day + 1 && d.m_hour == 0 && d0.m_hour == 23
 			|| daym == d0.m_day && d.m_mon == d0.m_mon + 1 && d.m_hour == 0 && d0.m_hour == 23)
 			dt_mn = 60 + d.m_mn - d0.m_mn;
+		{
+			vpainter_c vpnt;
+			painter_c* pnt1 = new painter_c();
+			pnt1->drawImage(img0);
+			vpnt.m_painter.push_back(pnt1);
 
-		render(buf, img0, img1, dt_mn);
-
+			if (rgb) {
+				painter_c* pnt2 = new painter_c();
+				pnt2->drawImage(rgb);
+				vpnt.m_painter.push_back(pnt2);
+			}
+			vpnt.outputUV(m_ll_region, m_shp_files, m_wiz_params, dt_mn, img0, img1);
+			
+			imwrite(SuplName16to8(jpg_fname), *vpnt.m_painter[0]->m_rgb);
+			imwrite(SuplName16to8(rgb_fname), *vpnt.m_painter[1]->m_rgb);
+		}
+		delete rgb;
 		delete img0;
 		img0 = img1;
 	}
 	delete img0;
-	*/
-	if (m_rgb_flag->isChecked())
-		makeRgb();
-	
+		
 	QGuiApplication::restoreOverrideCursor();
 	QGuiApplication::processEvents();
 	QMessageBox::information(nullptr, "MeteoWizard", str_generation_succeeded);

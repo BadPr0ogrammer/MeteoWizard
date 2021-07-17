@@ -23,6 +23,13 @@ wstring SuplName8to16(const char* filename)
 	return convert.from_bytes(filename);
 }
 
+string SuplName16to8(const wchar_t* filename)
+{
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    wstring ws = filename;
+    return converter.to_bytes(ws);
+}
+
 bool SuplFileExists(const wchar_t* name)
 {
 	FILE* file = _wfopen(name, L"rb"); 

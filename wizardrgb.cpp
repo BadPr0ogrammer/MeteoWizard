@@ -40,7 +40,7 @@ const char* const rgb_names[RGB_PRESET_NUM] = {
   //IDSTR_TRUE_COLOR_HRV
 };
 
-const char* const rgb_names_en[RGB_PRESET_NUM] = {
+const wchar_t* const rgb_names_en[RGB_PRESET_NUM] = {
   str_mphys_night_en,
   str_dust_en,
   str_mphys_airmass_en,
@@ -206,7 +206,16 @@ QWizardPage* MeteoWizard::createPostProcPage()
 			});
 	}
 	connect(m_rgb_flag, static_cast<void(QCheckBox::*)(int)>(&QCheckBox::stateChanged), [=](int state) {
-		m_wiz_params->rgb = state == Qt::Checked;
+		bool f = state == Qt::Checked;
+		m_wiz_params->rgb = f;
+		m_rgb_preset->setEnabled(f);
+		for (int i = 0; i < 3; i++) {
+			m_rgb_dimin[i]->setEnabled(f);
+			m_rgb_subtr[i]->setEnabled(f);
+			m_thres_min[i]->setEnabled(f);
+			m_thres_max[i]->setEnabled(f);
+			m_gamma[i]->setEnabled(f);
+		}
 		});
 
 	layout->addStretch();
@@ -214,7 +223,7 @@ QWizardPage* MeteoWizard::createPostProcPage()
 	return page;
 }
 
-void MeteoWizard::makeRgb()
+cv::Mat* MeteoWizard::makeRgb(date_c& date)
 {
 	int channels[6]{ 0,0,0,0,0,0 };
 	for (int i = 0; i < 3; i++) {
@@ -231,8 +240,7 @@ void MeteoWizard::makeRgb()
 		thresh[3 * i + 1] = m_thres_max[i]->value();
 		thresh[3 * i + 2] = m_gamma[i]->value();
 	}
-	const char* fprefix = rgb_names_en[m_rgb_preset->currentIndex()];
-	for (auto& date : *m_dates) {
+	{
 		slot_c src;
 		for (auto chnl : channels) {
 			if (chnl > 0) {
@@ -241,16 +249,12 @@ void MeteoWizard::makeRgb()
 				swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, sch.utf16(), 7, date.m_year, date.m_mon, date.m_day, date.m_hour, date.m_mn);
 
 				cv::Mat* img0 = openMsg(buf, m_ll_region);
+
 				SuplDebugMat(img0);
 
 				src.m_img[chnl] = img0;
 			}
 		}
-		cv::Mat* rgb = AtmradMakeDif(&src, thresh, channels);
-		{
-			char buf[100];
-			sprintf(buf, "%s-%04d%02d%02d%02d%02d.jpg", fprefix, date.m_year, date.m_mon, date.m_day, date.m_hour, date.m_mn);
-			imwrite(buf, *rgb);
-		}
+		return AtmradMakeDif(&src, thresh, channels);
 	}
 }

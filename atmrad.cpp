@@ -64,9 +64,9 @@ cv::Mat* AtmradMakeDif(slot_c* src, double* thresh, int* chnls)
 	int h = src->m_img[chnls[0]]->rows;
 
 	cv::Mat tmp[4] = { cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1) };
-	cv::Mat* rgb = new cv::Mat(h, w, CV_8UC4);
+	cv::Mat* rgb = new cv::Mat(h, w, CV_8UC3);
 	cv::Mat tmp32(h, w, CV_32F), b32(h, w, CV_32F);
-	tmp[3] = 255;
+	//tmp[3] = 255;
 	if (!rgb)
 		goto end;
 	{
@@ -110,7 +110,7 @@ cv::Mat* AtmradMakeDif(slot_c* src, double* thresh, int* chnls)
 				Gamma(&tmp[i], &tmp[i], gamma);
 		}
 
-		cv::merge(tmp, 4, *rgb);
+		cv::merge(tmp, 3, *rgb);
 		ret = TRUE;
 	}
 end:

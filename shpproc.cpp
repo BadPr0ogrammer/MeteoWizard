@@ -42,9 +42,11 @@ shp_c* shp_c::shpProc(QString name, const ll_region_c* const rc)
 	return nullptr;
 }
 
-QGraphicsItemGroup* shp_c::renderShp(const ll_region_c* const rect, double scaleX, double scaleY, const cv::Mat* const mat)
+vector<QGraphicsItemGroup*> shp_c::renderShp(int num, const ll_region_c* const rect, double scaleX, double scaleY, cv::Size sz)
 {
-	QGraphicsItemGroup* group = nullptr;
+	vector<QGraphicsItemGroup*> group;
+	for (int i = 0; i < num; i++)
+		group.push_back(new QGraphicsItemGroup());
 
 	//if (!m_clip || !m_clip->size())
 		//return nullptr;
@@ -75,8 +77,8 @@ QGraphicsItemGroup* shp_c::renderShp(const ll_region_c* const rect, double scale
 				Point2f &pt = (*cnt)[k];
 				double x = scaleX * (pt.x - rect->m_x);
 				double y = scaleY * (rect->m_y + rect->m_height - pt.y);
-				if (x >= 0 && x <= mat->cols - 1 &&
-					y >= 0 && y <= mat->rows - 1) {
+				if (x >= 0 && x <= sz.width- 1 &&
+					y >= 0 && y <= sz.height - 1) {
 					pt1 = QPointF(x, y);
 					tmp->append(pt1);
 				}
@@ -85,26 +87,27 @@ QGraphicsItemGroup* shp_c::renderShp(const ll_region_c* const rect, double scale
 				QPolygonF* poly = new QPolygonF(*tmp);
 				QPainterPath* path = new QPainterPath();
 				path->addPolygon(*poly);
-				QGraphicsPathItem* item = new QGraphicsPathItem(*path);
+				
+				for (int ii = 0; ii < num; ii++) {
+					QGraphicsPathItem* item = new QGraphicsPathItem(*path);
 
-				QPen pen(m_line_color);
-				pen.setWidth(m_line_width);
-				item->setPen(pen);
-				if (!group)
-					group = new QGraphicsItemGroup();
-				group->addToGroup(item);
+					QPen pen(m_line_color);
+					pen.setWidth(m_line_width);
+					item->setPen(pen);
+					group[ii]->addToGroup(item);
+				}
 			}
 		}
 	
 		if (!parts->m_lab.isEmpty() && pt1.x() != 987654321) {
 			//if (pfm.width(shp->lab()) < w - pt1.x() && pfm.height() < h - pt1.y()) {
-			QGraphicsTextItem *item = new QGraphicsTextItem(parts->m_lab);
-			item->setPos(pt1.x(), pt1.y() - pfm.height());
-			item->setDefaultTextColor(m_text_color);
-			item->setFont(parts->m_popul < 1E5 ? font1 : parts->m_popul < 1E6 ? font2 : font3);			
-			if (!group)
-				group = new QGraphicsItemGroup();
-			group->addToGroup(item);
+			for (int ii = 0; ii < num; ii++) {
+				QGraphicsTextItem* item = new QGraphicsTextItem(parts->m_lab);
+				item->setPos(pt1.x(), pt1.y() - pfm.height());
+				item->setDefaultTextColor(m_text_color);
+				item->setFont(parts->m_popul < 1E5 ? font1 : parts->m_popul < 1E6 ? font2 : font3);
+				group[ii]->addToGroup(item);
+			}
 		}
 	}
 	return group;

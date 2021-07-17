@@ -59,10 +59,11 @@ public:
 	QWizardPage* createRegionPage();
 	QWizardPage* createPostProcPage();
 
-	void render(const wchar_t* fname, const cv::Mat* const p0, const cv::Mat* const p1, int dt_mn);
 	cv::Mat* openMsg(const wchar_t* fname, ll_region_c* ll_region);
-	void makeRgb();
+	cv::Mat* makeRgb(date_c& date);
 
 protected slots:
 	void accept() override;
 };
+
+extern const wchar_t* const rgb_names_en[RGB_PRESET_NUM];

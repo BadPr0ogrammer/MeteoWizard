@@ -1,10 +1,10 @@
 #pragma once
 
-#define str_mphys_night_en "MPhys(Air)"
-#define str_mphys_airmass_en "MPhys(Night)"
-#define str_dust_en "Dust"
-#define str_mphys_day_en "MPhys(Day)"
-#define str_natural_en "Natural"
+#define str_mphys_night_en L"MPhys(Air)"
+#define str_mphys_airmass_en L"MPhys(Night)"
+#define str_dust_en L"Dust"
+#define str_mphys_day_en L"MPhys(Day)"
+#define str_natural_en L"Natural"
 
 #ifdef LOCAL_RU
 #define str_output_settings "Выходные настройки"

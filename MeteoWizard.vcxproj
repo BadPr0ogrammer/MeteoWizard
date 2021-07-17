@@ -288,7 +288,6 @@
     <ClInclude Include="2.06\DISE\MSGTime_impl.h" />
     <ClInclude Include="atmrad.h" />
     <ClInclude Include="local_str.h" />
-    <ClInclude Include="ReadPrologue.h" />
     <ClInclude Include="shapelib\shapefil.h" />
     <ClInclude Include="wizparams.h" />
     <QtMoc Include="meteowizard.h" />
