@@ -55,8 +55,8 @@ void Gamma(cv::Mat* src, cv::Mat* dst, double gamma)
 
 	cv::LUT(*src, m, *dst);
 }
-
-cv::Mat* AtmradMakeDif(slot_c* src, double* thresh, int* chnls)
+ 
+cv::Mat* AtmradMakeDif(slot_c* src, const int(chnls)[6], const double(thresh)[9])
 {
 	cv::Mat* map = NULL;
 	int ret = FALSE;

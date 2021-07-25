@@ -15,7 +15,7 @@
 #define str_input_files_shp_path "Путь к векторным файлам(SHP)"
 #define str_output_file_name_prefix "Префикс имени выходных файлов"
 #define str_satellite_type "Тип спутника MSG 4/3"
-#define str_channel "Канал"
+#define str_main_channel "Основной канал"
 #define str_hours_sc_min "Часы::Минуты"
 #define str_datetime_page_title "Задание временного слота"
 #define str_date_from "Дата от"
@@ -54,6 +54,9 @@
 #define str_red_difference "Красный(разность)"
 #define str_green_difference "Зеленый(разность)"
 #define str_blue_difference "Синий(разность)"
+#define str_rgb_selected "Выбранные RGB"
+#define str_add_preset "Добавить пресет"
+#define str_remove_preset "Удалить пресет"
 
 #else
 #define str_output_settings "Output Settings"
@@ -64,7 +67,7 @@
 #define str_input_files_shp_path "Vector Files(SHP) Path"
 #define str_output_file_name_prefix "Output File Name Prefix"
 #define str_satellite_type "Satellite Type MSG 4/3"
-#define str_channel "Channel"
+#define str_main_channel "Main channel"
 #define str_hours_sc_min "Hours::Minutes"
 #define str_datetime_page_title "DateTime Slots Selection"
 #define str_date_from "Date From"
@@ -102,5 +105,8 @@
 #define str_red_difference "Red(difference)"
 #define str_green_difference "Green(difference)"
 #define str_blue_difference "Blue(difference)"
+#define str_rgb_selected "RGB selected"
+#define str_add_preset "Add preset"
+#define str_remove_preset "Remove preset"
 
 #endif

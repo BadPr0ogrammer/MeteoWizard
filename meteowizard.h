@@ -13,6 +13,17 @@ class ll_region_c;
 class wiz_params_c;
 class SelectColorButton;
 
+class params_channels_c : QObject {
+public:
+	int channels[6];
+	double params[9];
+
+	params_channels_c() : channels{ 0,0,0,0,0,0 }, params{ 0,0,0,0,0,0,0,0,0 } {}
+	params_channels_c(int(chn)[6], double(par)[9]) { memcpy(channels, chn, sizeof(channels)); memcpy(params, par, sizeof(params));}
+	params_channels_c(const params_channels_c& obj) { memcpy(channels, obj.channels, sizeof(channels)); memcpy(params, obj.params, sizeof(params)); }
+};
+Q_DECLARE_METATYPE(params_channels_c)
+
 class MeteoWizard : public QWizard
 {
 	Q_OBJECT
@@ -38,6 +49,9 @@ public:
 	QDoubleSpinBox* m_thres_min[3];
 	QDoubleSpinBox* m_thres_max[3];
 	QDoubleSpinBox* m_gamma[3];
+	QListWidget* m_rgbSetList;
+	QPushButton* m_rgb_add;
+	QPushButton* m_rgb_del;
 
 	QStandardItemModel* m_model_cntrs;
 	QTableView* m_view_cntrs;
@@ -48,6 +62,7 @@ public:
 	std::vector<shp_c*>* m_shp_files;
 	ll_region_c* m_ll_region;
 	wiz_params_c* m_wiz_params;
+
 	bool m_json;
 
 	MeteoWizard(QWidget* parent);
@@ -60,7 +75,7 @@ public:
 	QWizardPage* createPostProcPage();
 
 	cv::Mat* openMsg(const wchar_t* fname, ll_region_c* ll_region);
-	cv::Mat* makeRgb(date_c& date);
+	cv::Mat* makeRgb(date_c& date, const params_channels_c& par_chnl);
 
 protected slots:
 	void accept() override;

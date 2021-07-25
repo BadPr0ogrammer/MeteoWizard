@@ -8,4 +8,4 @@ public:
 	~slot_c() { for (int i = 0; i < LAYER_NUM; i++) delete m_img[i]; }
 };
 
-cv::Mat*  AtmradMakeDif(slot_c *src, double *thresh, int *chnls);
+cv::Mat*  AtmradMakeDif(slot_c *src, const int(chnls)[6], const double(thresh)[9]);

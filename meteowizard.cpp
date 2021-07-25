@@ -110,7 +110,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		m_msg_type->setChecked(!m_json ? true : m_wiz_params->msg == 4);
 		hbox->addWidget(m_msg_type, 4, 1);
 
-		hbox->addWidget(new QLabel(str_channel), 5, 0);
+		hbox->addWidget(new QLabel(str_main_channel), 5, 0);
 		m_channel_tag = new QComboBox;
 		m_channel_tag->setFixedWidth(150);
 		for (int i = 1; i < _countof(channel_tags); i++)
@@ -575,7 +575,7 @@ void MeteoWizard::accept()
 	}
 
 	date_c& d0 = (*m_dates)[0];
-	wchar_t msg_fname[100], jpg_fname[100], rgb_fname[100];
+	wchar_t msg_fname[100], jpg_fname[100];
 	cv::Mat* img0;
 	{
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
@@ -584,7 +584,6 @@ void MeteoWizard::accept()
 		img0 = openMsg(msg_fname, m_ll_region);
 		SuplDebugMat(img0);
 	}
-	int dt_mn = 0;
 	for (int i = 1; i < m_dates->size(); i++) {
 		date_c& d = (*m_dates)[i];
 		
@@ -594,41 +593,56 @@ void MeteoWizard::accept()
 		
 		cv::Mat* img1 = openMsg(msg_fname, m_ll_region);
 		SuplDebugMat(img1);
-		swprintf(jpg_fname, L"%s_%s_%d_%d_%d_%d_%d.jpg", m_wiz_params->fname_pref.utf16(), channel.utf16(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-
-		cv::Mat* rgb = nullptr;
-		if (m_rgb_flag->isChecked()) {
-			rgb = makeRgb(d);
-			wsprintf(rgb_fname, L"%s-%04d%02d%02d%02d%02d.jpg", rgb_names_en[m_rgb_preset->currentIndex()], d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-		}
-		
-		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->jpg_path))
-			qDebug() << str_error_blank << "SetCurrentDirectory 3\n";
 
 		int daym = date_c::day_in_mon(d0.m_year, d0.m_mon);
+		int dt_mn = 0;
 		if (d.m_mn > d0.m_mn)
 			dt_mn = d.m_mn - d0.m_mn;
 		else if (d.m_hour == d0.m_hour + 1
 			|| d.m_day == d0.m_day + 1 && d.m_hour == 0 && d0.m_hour == 23
 			|| daym == d0.m_day && d.m_mon == d0.m_mon + 1 && d.m_hour == 0 && d0.m_hour == 23)
 			dt_mn = 60 + d.m_mn - d0.m_mn;
-		{
-			vpainter_c vpnt;
-			painter_c* pnt1 = new painter_c();
-			pnt1->drawImage(img0);
-			vpnt.m_painter.push_back(pnt1);
 
-			if (rgb) {
+		vpainter_c vpnt;
+		painter_c* pnt1 = new painter_c();
+		pnt1->drawImage(img0);
+		vpnt.m_painter.push_back(pnt1);
+
+		vector<cv::Mat*> vrgb;
+		vector<wstring> vrgb_fname;
+		if (m_rgb_flag->isChecked()) {
+			for (int k = 0; k < m_rgbSetList->count(); k++) {
+				auto item = m_rgbSetList->item(k);
+				QVariant var = item->data(Qt::UserRole);
+				const params_channels_c& p = qvariant_cast<params_channels_c>(var);
+				QString str = item->text();
+
+				cv::Mat* rgb = makeRgb(d, p);
+				vrgb.push_back(rgb);
+
 				painter_c* pnt2 = new painter_c();
 				pnt2->drawImage(rgb);
 				vpnt.m_painter.push_back(pnt2);
+				
+				wchar_t rgb_fname[100];
+				wsprintf(rgb_fname, L"%s-%04d%02d%02d%02d%02d.jpg", str.toStdWString().c_str(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+				vrgb_fname.push_back(wstring(rgb_fname));
 			}
-			vpnt.outputUV(m_ll_region, m_shp_files, m_wiz_params, dt_mn, img0, img1);
-			
-			imwrite(SuplName16to8(jpg_fname), *vpnt.m_painter[0]->m_rgb);
-			imwrite(SuplName16to8(rgb_fname), *vpnt.m_painter[1]->m_rgb);
+		}		
+		
+		vpnt.outputUV(m_ll_region, m_shp_files, m_wiz_params, dt_mn, img0, img1);
+
+		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->jpg_path))
+			qDebug() << str_error_blank << "SetCurrentDirectory 3\n";
+		swprintf(jpg_fname, L"%s_%s_%d_%d_%d_%d_%d.jpg", m_wiz_params->fname_pref.utf16(), channel.utf16(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+
+		imwrite(SuplName16to8(jpg_fname), *vpnt.m_painter[0]->m_rgb);
+
+		for (int m = 0; m < vrgb.size(); m++) {
+			imwrite(SuplName16to8(vrgb_fname[m].c_str()), *vpnt.m_painter[m + 1]->m_rgb);
+			delete vrgb[m];
 		}
-		delete rgb;
+
 		delete img0;
 		img0 = img1;
 	}
