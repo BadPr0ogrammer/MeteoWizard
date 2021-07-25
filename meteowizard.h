@@ -76,6 +76,7 @@ public:
 
 	cv::Mat* openMsg(const wchar_t* fname, ll_region_c* ll_region);
 	cv::Mat* makeRgb(date_c& date, const params_channels_c& par_chnl);
+	void process();
 
 protected slots:
 	void accept() override;

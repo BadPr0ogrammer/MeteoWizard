@@ -541,7 +541,6 @@ void MeteoWizard::accept()
 	}
 
 	m_wiz_params->channel_idx = m_channel_tag->currentIndex();
-	QString channel = channel_tags[m_wiz_params->channel_idx + 1];
 
 	m_wiz_params->arrow_color = m_arrow_color->getColor();
 
@@ -574,23 +573,40 @@ void MeteoWizard::accept()
 			qDebug() << str_error_blank << "shpProc\n";
 	}
 
+	process();
+
+	QGuiApplication::restoreOverrideCursor();
+	QGuiApplication::processEvents();
+	QMessageBox::information(nullptr, "MeteoWizard", str_generation_succeeded);
+
+	QDir::setCurrent(m_wiz_params->working_dir);
+	if (!m_wiz_params->write_settings(*m_wiz_params, m_ll_region, *m_shp_files, "settings.json"))
+		qDebug() << str_error_blank << str_saving_nocap << " JSON\n";
+
+	QDialog::accept();
+}
+
+void MeteoWizard::process()
+{
 	date_c& d0 = (*m_dates)[0];
 	wchar_t msg_fname[100], jpg_fname[100];
 	cv::Mat* img0;
+	QString channel = channel_tags[m_wiz_params->channel_idx + 1];
 	{
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 1\n";
+
 		swprintf(msg_fname, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d0.m_year, d0.m_mon, d0.m_day, d0.m_hour, d0.m_mn);//L"WV_062"
 		img0 = openMsg(msg_fname, m_ll_region);
 		SuplDebugMat(img0);
 	}
 	for (int i = 1; i < m_dates->size(); i++) {
 		date_c& d = (*m_dates)[i];
-		
+
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 2\n";
 		swprintf(msg_fname, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-		
+
 		cv::Mat* img1 = openMsg(msg_fname, m_ll_region);
 		SuplDebugMat(img1);
 
@@ -623,13 +639,13 @@ void MeteoWizard::accept()
 				painter_c* pnt2 = new painter_c();
 				pnt2->drawImage(rgb);
 				vpnt.m_painter.push_back(pnt2);
-				
+
 				wchar_t rgb_fname[100];
 				wsprintf(rgb_fname, L"%s-%04d%02d%02d%02d%02d.jpg", str.toStdWString().c_str(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
 				vrgb_fname.push_back(wstring(rgb_fname));
 			}
-		}		
-		
+		}
+
 		vpnt.outputUV(m_ll_region, m_shp_files, m_wiz_params, dt_mn, img0, img1);
 
 		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->jpg_path))
@@ -647,16 +663,6 @@ void MeteoWizard::accept()
 		img0 = img1;
 	}
 	delete img0;
-		
-	QGuiApplication::restoreOverrideCursor();
-	QGuiApplication::processEvents();
-	QMessageBox::information(nullptr, "MeteoWizard", str_generation_succeeded);
-
-	QDir::setCurrent(m_wiz_params->working_dir);
-	if (!m_wiz_params->write_settings(*m_wiz_params, m_ll_region, *m_shp_files, "settings.json"))
-		qDebug() << str_error_blank << str_saving_nocap << " JSON\n";
-
-	QDialog::accept();
 }
 
 int main(int argc, char* argv[])
