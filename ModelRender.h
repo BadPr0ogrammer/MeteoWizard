@@ -23,10 +23,10 @@ class vtkClipDataSet;
 class PlaneWidgetCallback;
 class vtkRenderWindowInteractor;
 
-class MainWindow;
+class MeteoWizard;
 class VolumeRender;
 class GridRender;
-class UnionRender;
+//class UnionRender;
 
 template<class T> class vtkNew;
 
@@ -50,7 +50,7 @@ public:
 
 	VolumeRender* m_volume;
 	//GridRender* m_grid;
-	UnionRender* m_union;
+	//UnionRender* m_union;
 
 	ModelRender(MeteoWizard* mainWindow);
 	~ModelRender();

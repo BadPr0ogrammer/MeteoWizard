@@ -1,5 +1,9 @@
 #include <QDoubleSpinBox>
 
+#include <vtkProperty.h>
+#include <vtkRenderWindow.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkRenderer.h>
 #include <vtkPlaneWidget.h>
 
 #include "PlaneWidgetCallback.h"

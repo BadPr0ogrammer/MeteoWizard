@@ -4,8 +4,11 @@
 #include <QDoubleSpinBox>
 #include <QAbstractButton>
 
-#include <vtkRenderer.h>
+#include <vtkCamera.h>
+#include <vtkProperty.h>
 #include <vtkRenderWindow.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkRenderer.h>
 #include <vtkPiecewiseFunction.h>
 #include <vtkDiscretizableColorTransferFunction.h>
 #include <vtkLookupTable.h>
@@ -42,7 +45,9 @@
 #include <vtkTextProperty.h>
 #include <vtkPlaneWidget.h>
 #include <vtkCommand.h>
+#include <vtkRenderingVolumeOpenGL2Module.h>
 
+//.;MSG\include;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;shapelib;..\opencv-3.4.14\build;..\opencv-3.4.14\modules\core\include;..\opencv-3.4.14\modules\imgproc\include;..\opencv-3.4.14\modules\imgcodecs\include;..\opencv-3.4.14\modules\highgui\include;..\opencv-3.4.14\modules\videoio\include;debug;/include;..\opencv-3.4.14\3rdparty\libjasper;..\opencv-3.4.14\3rdparty\libpng;..\opencv-3.4.14\3rdparty\libjpeg;win32;met-5.2_bugfix\src\basic\vx_cal;met-5.2_bugfix\src\basic\vx_config;met-5.2_bugfix\src\basic\vx_log;met-5.2_bugfix\src\basic\vx_math;met-5.2_bugfix\src\basic\vx_util;met-5.2_bugfix\src\libcode\vx_data2d;met-5.2_bugfix\src\libcode\vx_data2d_factory;met-5.2_bugfix\src\libcode\vx_data2d_grib2;met-5.2_bugfix\src\libcode\vx_data2d_grib;met-5.2_bugfix\src\libcode\vx_grid;g2clib-1.6.0;met-5.2_bugfix;..\VTK-master\build\Utilities\KWIML;..\VTK-master\Utilities\KWIML;..\VTK-master\build\Common\Core;..\VTK-master\Common\Core;..\VTK-master\build\Rendering\Core;..\VTK-master\Rendering\Core;..\	\build\Common\DataModel;..\VTK-master\Common\DataModel;..\VTK-master\build\Rendering\VolumeOpenGL2;..\VTK-master\Rendering\VolumeOpenGL2;..\VTK-master\build\Filters\Core;..\VTK-master\Filters\Core;..\VTK-master\build\Filters\Geometry;..\VTK-master\Filters\Geometry;..\VTK-master\build\Rendering\OpenGL2;..\VTK-master\Rendering\OpenGL2;..\VTK-master\build\Filters\Hybrid;..\VTK-master\Filters\Hybrid;..\VTK-master\build\Filters\General;..\VTK-master\Filters\General;..\VTK-master\build\Common\Color;..\VTK-master\Common\Color;..\VTK-master\build\Filters\Points;..\VTK-master\Filters\Points;..\VTK-master\build\Interaction\Widgets;..\VTK-master\Interaction\Widgets;..\VTK-master\build\Rendering\Annotation;..\VTK-master\Rendering\Annotation;..\VTK-master\build\Common\Math;..\VTK-master\Common\Math;..\VTK-master\build\Common\ExecutionModel;..\VTK-master\Common\ExecutionModel;..\VTK-master\build\Rendering\Volume;..\VTK-master\Rendering\Volume;..\VTK-master\build\Imaging\Core;..\VTK-master\Imaging\Core;..\VTK-master\build\Common\Misc;..\VTK-master\Common\Misc;
 #include "PlaneWidgetCallback.h"
 #include "meteowizard.h"
 
@@ -57,7 +62,7 @@
 ModelRender::ModelRender(MeteoWizard* mainWindow) :
 	m_mainWindow(mainWindow),
 	m_minRho(0), m_maxRho(0),
-	m_volume(nullptr), m_union(nullptr),
+	m_volume(nullptr), //m_union(nullptr),
 	m_curPalIdx(0)
 {
 	_camera->SetViewUp(0, 0, 1);
@@ -118,7 +123,7 @@ ModelRender::~ModelRender()
 {
 	delete m_volume;
 	//delete m_grid;
-	delete m_union;
+	//delete m_union;
 	
 	delete _planeWidgetCallback;
 }
