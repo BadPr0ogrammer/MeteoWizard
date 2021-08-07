@@ -12,6 +12,8 @@ class shp_c;
 class ll_region_c;
 class wiz_params_c;
 class SelectColorButton;
+class ModelRender;
+class palettes_c;
 
 class params_channels_c : QObject {
 public:
@@ -23,6 +25,8 @@ public:
 	params_channels_c(const params_channels_c& obj) { memcpy(channels, obj.channels, sizeof(channels)); memcpy(params, obj.params, sizeof(params)); }
 };
 Q_DECLARE_METATYPE(params_channels_c)
+
+#define color_num 3
 
 class MeteoWizard : public QWizard
 {
@@ -65,6 +69,15 @@ public:
 
 	bool m_json;
 
+	ModelRender* m_modelRender;
+	palettes_c* m_palettes;
+	void checkColorTF(std::vector<double>& xv, std::vector<double>& yv);
+	QDoubleSpinBox* m_normSp[3];
+	QDoubleSpinBox* m_cutSp[3];
+	QDoubleSpinBox* m_bBoxSp[6];
+	QDoubleSpinBox* m_colorTfSp_X[2 * color_num], * m_colorTfSp_Y[2 * color_num];
+	QMetaObject::Connection m_colorConnect_X[2 * color_num], m_colorConnect_Y[2 * color_num];
+
 	MeteoWizard(QWidget* parent);
 
 	QWizardPage* createIntroPage();
@@ -80,6 +93,7 @@ public:
 
 protected slots:
 	void accept() override;
+	void colorBoxValueChanged(double val);
 };
 
 extern const wchar_t* const rgb_names_en[RGB_PRESET_NUM];

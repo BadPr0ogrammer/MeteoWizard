@@ -63,6 +63,51 @@
     <Filter Include="other">
       <UniqueIdentifier>{9a1ffc7d-0147-4948-947f-5e85ce995936}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\g2clib">
+      <UniqueIdentifier>{f861b112-9bbe-4492-bebb-43b00307507a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met">
+      <UniqueIdentifier>{5ec3410e-2624-4906-81bb-c8c0d091c0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src">
+      <UniqueIdentifier>{cda45dea-9f40-4487-9bde-a667dc42a70c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\basic">
+      <UniqueIdentifier>{e7ca407a-7d04-4039-81a4-7a179d04d007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\basic\vx_cal">
+      <UniqueIdentifier>{02304960-9a82-48a9-a514-6f0806d39a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\basic\vx_config">
+      <UniqueIdentifier>{60931e3a-4b1b-4048-a994-1528720245c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\basic\vx_log">
+      <UniqueIdentifier>{3464b843-cfb1-4887-b42b-a7be51e36942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\basic\vx_math">
+      <UniqueIdentifier>{2ed876cd-77fc-41b2-81bc-0b0baa102d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\basic\vx_util">
+      <UniqueIdentifier>{5e8c7eec-656c-463c-b6e3-fe34e0474499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\libcode">
+      <UniqueIdentifier>{49031d2a-14f5-4131-bbd1-015a663a3781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\libcode\vx_data2d">
+      <UniqueIdentifier>{5c36a7e0-668a-4422-bbd5-0399c32ac56e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\libcode\vx_data2d_factory">
+      <UniqueIdentifier>{d9e992a9-8147-4983-b54b-742747e2a1ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\libcode\vx_data2d_grib">
+      <UniqueIdentifier>{618cf8d0-1fa8-4067-bdde-69124d58d013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\libcode\vx_data2d_grib2">
+      <UniqueIdentifier>{02e7095b-46e3-4e20-85b4-77e54815a234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Met\src\libcode\vx_grid">
+      <UniqueIdentifier>{0d2127a4-18e7-47cc-a1a8-c895fb1cf494}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="meteowizard.cpp">
@@ -213,6 +258,339 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wizardrgb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\cmplxpack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\compack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\comunpack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\drstemplates.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_addfield.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_addgrid.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_addlocal.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_create.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_free.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_getfld.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_gribend.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_info.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_miss.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack1.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack2.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack3.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack4.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack5.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack6.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\g2_unpack7.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\gbits.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\getdim.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\getpoly.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\gridtemplates.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\int_power.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\misspack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\mkieee.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\pack_gp.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\pdstemplates.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\rdieee.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\reduce.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\seekgb.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\simpack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\simunpack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\specpack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="g2clib-1.6.0\specunpack.c">
+      <Filter>Source Files\g2clib</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\date_to_mjd.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\doyhms_to_unix.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\mdyhms_to_unix.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\mjd_to_date.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\time_array.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\time_strings.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\unix_string.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_cal\unix_to_mdyhms.cc">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_config\config.tab.cc">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_config\config_file.cc">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_config\config_scanner.cc">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_config\dictionary.cc">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_config\grdfiletype_to_string.cc">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_config\threshold.cc">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_log\concat_string.cc">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_log\indent.cc">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_log\string_array.cc">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_math\angles.cc">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_math\hist.cc">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_math\nint.cc">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_math\nti.cc">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_math\ptile.cc">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_math\pwl.cc">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\ascii_table.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\asciitablejust_to_string.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\check_endian.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\comma_string.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\conversions.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\data_plane.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\data_plane_util.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\file_exists.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\file_linecount.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\file_size.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\filename_suffix.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\fix_float.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\grib_constants.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\int_array.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\interp_mthd.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\interp_util.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\is_number.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\memory.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\num_array.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\ordinal.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\roman_numeral.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\string_fxns.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\substring.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\temp_file.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\thresh_array.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\basic\vx_util\two_to_one.cc">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_grid\find_grid_by_name.cc">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_grid\grid_base.cc">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_grid\latlon_grid.cc">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_grid\lc_grid.cc">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_grid\merc_grid.cc">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_grid\st_grid.cc">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_grib2\data2d_grib2.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib2</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_grib2\var_info_grib2.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib2</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\data2d_grib_utils.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\grib_classes.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\grib_utils.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\var_info_grib.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\data2d_factory.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\data2d_factory_utils.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\is_grib_file.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d\data_class.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d\data2d_utils.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d\level_info.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d\leveltype_to_string.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d\table_lookup.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClCompile>
+    <ClCompile Include="met-5.2_bugfix\src\libcode\vx_data2d\var_info.cc">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClCompile>
+    <ClCompile Include="readgrib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VolumeRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Palettes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneWidgetCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -422,6 +800,297 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="atmrad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g2clib-1.6.0\drstemplates.h">
+      <Filter>Source Files\g2clib</Filter>
+    </ClInclude>
+    <ClInclude Include="g2clib-1.6.0\grib2.h">
+      <Filter>Source Files\g2clib</Filter>
+    </ClInclude>
+    <ClInclude Include="g2clib-1.6.0\gridtemplates.h">
+      <Filter>Source Files\g2clib</Filter>
+    </ClInclude>
+    <ClInclude Include="g2clib-1.6.0\pdstemplates.h">
+      <Filter>Source Files\g2clib</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_cal\time_array.h">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_cal\vx_cal.h">
+      <Filter>Source Files\Met\src\basic\vx_cal</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\config.tab.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\config_constants.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\config_file.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\config_util.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\data_file_type.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\dictionary.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\grdfiletype_to_string.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\object_types.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\scanner_stuff.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\threshold.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_config\vx_config.h">
+      <Filter>Source Files\Met\src\basic\vx_config</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_log\concat_string.h">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_log\indent.h">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_log\string_array.h">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_log\vx_log.h">
+      <Filter>Source Files\Met\src\basic\vx_log</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\affine.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\angles.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\hist.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\is_bad_data.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\math_constants.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\nint.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\nti.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\ptile.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\pwl.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\trig.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\viewgravity_to_string.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_math\vx_math.h">
+      <Filter>Source Files\Met\src\basic\vx_math</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\ascii_table.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\asciitablejust_to_string.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\bool_to_string.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\check_endian.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\comma_string.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\conversions.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\data_plane.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\data_plane_util.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\empty_string.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\file_exists.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\file_linecount.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\file_size.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\filename_suffix.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\fix_float.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\grib_constants.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\int_array.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\interp_mthd.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\interp_util.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\is_number.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\memory.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\num_array.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\ordinal.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\roman_numeral.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\string_fxns.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\substring.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\temp_file.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\thresh_array.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\two_to_one.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\util_constants.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\basic\vx_util\vx_util.h">
+      <Filter>Source Files\Met\src\basic\vx_util</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\find_grid_by_name.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\grid_base.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\latlon_grid.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\latlon_grid_defs.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\lc_grid.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\lc_grid_defs.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\merc_grid.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\merc_grid_defs.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\st_grid.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\st_grid_defs.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_grid\vx_grid.h">
+      <Filter>Source Files\Met\src\libcode\vx_grid</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib2\data2d_grib2.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib2</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib2\var_info_grib2.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib2</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\data2d_grib_utils.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\grib_classes.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\grib_utils.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\var_info_grib.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_grib\vx_data2d_grib.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_grib</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\data2d_factory.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\data2d_factory_utils.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\is_grib_file.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d_factory\vx_data2d_factory.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d_factory</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\data_class.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\data2d_utils.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\level_info.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\leveltype_to_string.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\table_lookup.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\var_info.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="met-5.2_bugfix\src\libcode\vx_data2d\vx_data2d.h">
+      <Filter>Source Files\Met\src\libcode\vx_data2d</Filter>
+    </ClInclude>
+    <ClInclude Include="readgrib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="griblatlon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VolumeRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneWidgetCallback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

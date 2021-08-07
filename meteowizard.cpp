@@ -26,6 +26,7 @@
 
 using namespace std;
 using namespace cv;
+//met-5.2_bugfix\src\basic\vx_cal;met-5.2_bugfix\src\basic\vx_config;met-5.2_bugfix\src\basic\vx_log;met-5.2_bugfix\src\basic\vx_math;met-5.2_bugfix\src\basic\vx_util;met-5.2_bugfix\src\libcode\vx_data2d;met-5.2_bugfix\src\libcode\vx_data2d_factory;met-5.2_bugfix\src\libcode\vx_data2d_grib2;met-5.2_bugfix\src\libcode\vx_data2d_grib;met-5.2_bugfix\src\libcode\vx_grid;
 
 const char* channel_tags[T_NUM] = { "", "VIS006", "VIS008", "IR_016", "IR_039", "WV_062", "WV_073", "IR_087", "IR_108", "IR_120", "IR_134"};//"IR_097", 
 
@@ -115,7 +116,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		m_channel_tag->setFixedWidth(150);
 		for (int i = 1; i < _countof(channel_tags); i++)
 			m_channel_tag->addItem(channel_tags[i]);
-		m_channel_tag->setCurrentIndex(4);
+		m_channel_tag->setCurrentIndex(!m_json ? 4 : m_wiz_params->channel_idx);
 		hbox->addWidget(m_channel_tag, 5, 1);
 	}
 	layout->addStretch();
