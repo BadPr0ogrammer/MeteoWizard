@@ -1093,6 +1093,9 @@
     <ClInclude Include="PlaneWidgetCallback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -1119,5 +1122,18 @@
     <None Include="settings.json">
       <Filter>other</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\logo.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="images\logo.ico">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

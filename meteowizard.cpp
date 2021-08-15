@@ -681,6 +681,8 @@ int main(int argc, char* argv[])
 	dw->addPage(dw->createShapePage());
 	dw->addPage(dw->createRegionPage());
 	dw->addPage(dw->createPostProcPage());
+	
+	dw->setWindowIcon(QPixmap(":/images/logo.png"));
 
 	dw->setWindowTitle(str_data_processing_wizard);
 	dw->resize(QSize(700, 500));

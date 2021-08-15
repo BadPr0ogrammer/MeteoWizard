@@ -32,6 +32,16 @@
           </Directory>
         </Directory>
       </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Component Win64='yes' Guid="{228CEB74-AF6B-4BDB-B058-A6C0176A0677}" Id="MeteoWizard_Shortcuts">
+          <Shortcut Id="MeteoWizard_ExeShortcut" Name="MeteoWizard" Description="Программа MeteoWizard" Target="[MeteoWizard_bin_dir]MeteoWizard.exe"
+                    WorkingDirectory="MeteoWizard_bin_dir" Icon="logo.ico" />
+          <RemoveFolder Id="MeteoWizard_RemoveShortcutsDir" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\MeteoWizard" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+
     </Directory>
 
     <ComponentGroup Id="MeteoWizard_app_group">
@@ -235,8 +245,12 @@
 
     </ComponentGroup>
 
+    <Icon Id="logo.ico" SourceFile="..\images\logo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="logo.ico" />
+
     <Feature Id="ProductFeature" Title="Main Product" Level="1">
       <ComponentGroupRef Id="MeteoWizard_app_group" />
+      <ComponentRef Id="MeteoWizard_Shortcuts" />
     </Feature>
   </Product>
 </Wix>

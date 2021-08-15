@@ -117,6 +117,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <Midl>
       <DefaultCharType>Unsigned</DefaultCharType>
@@ -501,6 +502,7 @@
     <ClInclude Include="ModelRender.h" />
     <ClInclude Include="PlaneWidgetCallback.h" />
     <ClInclude Include="readgrib.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="shapelib\shapefil.h" />
     <ClInclude Include="VolumeRender.h" />
     <ClInclude Include="wizparams.h" />
@@ -554,6 +556,13 @@
     <QtRcc Include="Resource.qrc">
     </QtRcc>
     <None Include="map.qml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\logo.ico" />
+    <Image Include="images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
