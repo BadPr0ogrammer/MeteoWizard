@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="MeteoWizard" Language="1033" Version="1.0.0.0" Manufacturer="НПО Тайфун" Codepage="UTF-8" UpgradeCode="e82653fa-a96f-4d1d-9992-339973a24843">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="Программа для обработки снимков MeteoSat" Platform="x64" />
+
+    <MajorUpgrade DowngradeErrorMessage="Более новая версия [ProductName] уже установлена." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="APPLICATIONFOLDER" Name="MeteoWizard">
+          <Directory Id="MeteoWizard_bin_dir" Name="bin">
+            <Directory Id="MeteoWizard_plugins_dir" Name="plugins">
+              <Directory Id="MeteoWizard_plugins_geoservices_dir" Name="geoservices" />
+              <Directory Id="MeteoWizard_plugins_platforms_dir" Name="platforms" />
+              <Directory Id="MeteoWizard_plugins_imageformats_dir" Name="imageformats" />
+              <Directory Id="MeteoWizard_plugins_styles_dir" Name="styles" />
+              <Directory Id="MeteoWizard_plugins_bearer_dir" Name="bearer" />
+            </Directory>
+            <Directory Id="MeteoWizard_qml_dir" Name="qml">
+              <Directory Id="MeteoWizard_qml_QtQuick_dir" Name="QtQuick">
+                <Directory Id="MeteoWizard_qml_QtQuick_Controls.2_dir" Name="Controls.2" />
+                <Directory Id="MeteoWizard_qml_QtQuick_Window.2_dir" Name="Window.2" />
+                <Directory Id="MeteoWizard_qml_QtQuick_Layouts_dir" Name="Layouts" />
+                <Directory Id="MeteoWizard_qml_QtQuick_Templates.2_dir" Name="Templates.2" />
+              </Directory>
+              <Directory Id="MeteoWizard_qml_QtQuick.2_dir" Name="QtQuick.2" />
+              <Directory Id="MeteoWizard_qml_QtLocation_dir" Name="QtLocation" />
+              <Directory Id="MeteoWizard_qml_QtPositioning_dir" Name="QtPositioning" />
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <ComponentGroup Id="MeteoWizard_app_group">
+      <Component Id="MeteoWizard_exe_cmp" Directory="MeteoWizard_bin_dir" Guid="{3F95FDAE-2EB0-4E24-9D19-773C1283E886}">
+        <File Id="MeteoWizard_exe" KeyPath="yes" Source="..\release\MeteoWizard.exe" />
+      </Component>
+
+      <Component Id="settings_json_cmp" Directory="MeteoWizard_bin_dir" Guid="{8AE3AB58-C2FE-42FC-8E6C-075201C36F41}">
+        <File Id="settings_json" KeyPath="yes" Source="..\settings.json" />
+      </Component>      
+
+      <Component Id="opencv_core3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{779BE713-21E0-478D-92EC-9400D8AF210F}">
+        <File Id="opencv_core3414_dll" KeyPath="yes" Source="..\release\opencv_core3414.dll" />
+      </Component>
+      <Component Id="opencv_highgui3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{EA8C0826-C8AA-45B9-87F2-AB469C6A7E4D}">
+        <File Id="opencv_highgui3414_dll" KeyPath="yes" Source="..\release\opencv_highgui3414.dll" />
+      </Component>
+      <Component Id="opencv_imgcodecs3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{44566B85-86DE-443B-8DEB-37C7550B93D7}">
+        <File Id="opencv_imgcodecs3414_dll" KeyPath="yes" Source="..\release\opencv_imgcodecs3414.dll" />
+      </Component>
+      <Component Id="opencv_imgproc3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{D4ECB43E-18DA-4F69-8644-5C08570E7BD1}">
+        <File Id="opencv_imgproc3414_dll" KeyPath="yes" Source="..\release\opencv_imgproc3414.dll" />
+      </Component>
+      <Component Id="opencv_video3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{FB301234-33BD-4C78-9E5C-1A70B72318A4}">
+        <File Id="opencv_video3414_dll" KeyPath="yes" Source="..\release\opencv_video3414.dll" />
+      </Component>
+      <Component Id="opencv_videoio3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{41F9C439-5A8B-47BB-80AC-6BF84833A382}">
+        <File Id="opencv_videoio3414_dll" KeyPath="yes" Source="..\release\opencv_videoio3414.dll" />
+      </Component>
+      <Component Id="opencv_ffmpeg3414_64_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{DDD1A574-4AB6-4919-A31B-EE2BE121C683}">
+        <File Id="opencv_ffmpeg3414_64_dll" KeyPath="yes" Source="..\release\opencv_ffmpeg3414_64.dll" />
+      </Component>
+      <Component Id="Qt5QuickWidgets_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{6A587738-6E42-4246-82D1-7CC9945C482C}">
+        <File Id="Qt5QuickWidgets_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5QuickWidgets.dll" />
+      </Component>
+      <Component Id="Qt5Gui_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{EC0CC376-68B9-40BE-8856-9935C00D53A2}">
+        <File Id="Qt5Gui_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Gui.dll" />
+      </Component>
+      <Component Id="Qt5Widgets_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{F764FE4C-E758-4888-A0F0-4F4A44CEDEF7}">
+        <File Id="Qt5Widgets_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Widgets.dll" />
+      </Component>
+      <Component Id="Qt5Qml_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{70F33D13-306A-4B26-B00E-51D7FEE3E1DD}">
+        <File Id="Qt5Qml_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Qml.dll" />
+      </Component>
+      <Component Id="Qt5Positioning_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{A119D951-4AE7-4CF1-BF4D-894E6FAEF8DC}">
+        <File Id="Qt5Positioning_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Positioning.dll" />
+      </Component>
+      <Component Id="Qt5Core_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{884993C5-40F7-4266-BD31-CE2984789472}">
+        <File Id="Qt5Core_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Core.dll" />
+      </Component>
+      <Component Id="Qt5Test_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{13887174-4DBF-4AD8-987C-98A07F43A8C7}">
+        <File Id="Qt5Test_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Test.dll" />
+      </Component>
+      <Component Id="Qt5Quick_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{4810511B-37EF-44E1-BB36-E6F035CAEAA5}">
+        <File Id="Qt5Quick_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Quick.dll" />
+      </Component>
+      <Component Id="Qt5Network_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{2943D7A5-DC4C-49D3-B6F2-F34D69B00BFE}">
+        <File Id="Qt5Network_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Network.dll" />
+      </Component>
+      <Component Id="Qt5QmlModels_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{8E66C76B-EC77-451B-9AB9-334CFF090856}">
+        <File Id="Qt5QmlModels_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5QmlModels.dll" />
+      </Component>
+      <Component Id="Qt5QmlWorkerScript_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{C2E33E32-53D4-4182-9291-E668A37E17B0}">
+        <File Id="Qt5QmlWorkerScript_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5QmlWorkerScript.dll" />
+      </Component>
+      <Component Id="Qt5QuickControls2_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{45BCD59A-4564-460F-8D7F-27F965634B62}">
+        <File Id="Qt5QuickControls2_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5QuickControls2.dll" />
+      </Component>
+      <Component Id="Qt5QuickTemplates2_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{475E8303-6548-4975-82D5-93194B9F52E6}">
+        <File Id="Qt5QuickTemplates2_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5QuickTemplates2.dll" />
+      </Component>
+      <Component Id="Qt5PositioningQuick_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{30D62F86-9259-4C08-9393-705519275A87}">
+        <File Id="Qt5PositioningQuick_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5PositioningQuick.dll" />
+      </Component>
+      <Component Id="Qt5Location_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{E96A9227-5A70-4350-B046-6D73112FCB2E}">
+        <File Id="Qt5Location_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Location.dll" />
+      </Component>
+      <Component Id="Qt5Svg_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{F4969A61-BB64-4D55-BC7D-1811A66F3444}">
+        <File Id="Qt5Svg_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5Svg.dll" />
+      </Component>
+
+      <Component Id="libssl_1_1_x64_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{A85EE716-C03F-4507-A833-05C22ECBC587}">
+        <File Id="libssl_1_1_x64_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\libssl-1_1-x64.dll" />
+      </Component>
+      <Component Id="libcrypto_1_1_x64_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{5ECE88C8-65B8-4558-B03E-C167FBB25EDB}">
+        <File Id="libcrypto_1_1_x64_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\libcrypto-1_1-x64.dll" />
+      </Component>
+
+      <Component Id="qgif_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{759AAB84-733A-4BB5-9F88-8E1A50B3DBDE}">
+        <File Id="qgif_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qgif.dll" />
+      </Component>
+      <Component Id="qicns_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{33D8CD94-5348-4807-ADA6-FCFE7B0AB766}">
+        <File Id="qicns_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qicns.dll" />
+      </Component>
+      <Component Id="qico_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{E6CAC5FD-C1E6-4B21-9E2C-F9C26901AD33}">
+        <File Id="qico_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qico.dll" />
+      </Component>
+      <Component Id="qjpeg_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{AB92DF69-CE05-43D6-BC74-3A13522DDB88}">
+        <File Id="qjpeg_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qjpeg.dll" />
+      </Component>
+      <Component Id="qsvg_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{64FE4CD2-B4A5-4572-845E-CEFE7CF8343E}">
+        <File Id="qsvg_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qsvg.dll" />
+      </Component>
+      <Component Id="qtga_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{92B75E1F-27AA-4FB3-9E67-EA4FAEC161D4}">
+        <File Id="qtga_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qtga.dll" />
+      </Component>
+      <Component Id="qtiff_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{68CA1A31-91C0-4C6E-BAB3-29A84DB5534B}">
+        <File Id="qtiff_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qtiff.dll" />
+      </Component>
+      <Component Id="qwbmp_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{E57F544F-7792-4607-A305-D0166CA18D0B}">
+        <File Id="qwbmp_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qwbmp.dll" />
+      </Component>
+      <Component Id="qwebp_dll_cmp" Directory="MeteoWizard_plugins_imageformats_dir" Guid="{0CBF9D50-A58F-4B78-8009-92C2D53230E1}">
+        <File Id="qwebp_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qwebp.dll" />
+      </Component>
+
+      <Component Id="qtgeoservices_osm_dll_cmp" Directory="MeteoWizard_plugins_geoservices_dir" Guid="{94EA79F8-F024-4554-A5C9-F20D26DEFB8E}">
+        <File Id="qtgeoservices_osm_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\geoservices\qtgeoservices_osm.dll" />
+      </Component>
+
+      <Component Id="qwindows_dll_cmp" Directory="MeteoWizard_plugins_platforms_dir" Guid="{70B36B48-C5FD-473F-8DD1-795399850E70}">
+        <File Id="qwindows_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\platforms\qwindows.dll" />
+      </Component>
+
+      <Component Id="qwindowsvistastyle_dll_cmp" Directory="MeteoWizard_plugins_styles_dir" Guid="{43E9BB3E-EF6D-4FA3-97A7-B70279FE00AC}">
+        <File Id="qwindowsvistastyle_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\styles\qwindowsvistastyle.dll" />
+      </Component>
+      <Component Id="qgenericbearer_dll_cmp" Directory="MeteoWizard_plugins_bearer_dir" Guid="{B5817C74-0476-43C1-AA5A-9E30A267D0F6}">
+        <File Id="qgenericbearer_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\plugins\bearer\qgenericbearer.dll" />
+      </Component>
+
+      <Component Id="qtquickcontrols2plugin_dll_cmp" Directory="MeteoWizard_qml_QtQuick_Controls.2_dir" Guid="{8ECEE39B-D325-4C4F-BBB7-F7BDC370B388}">
+        <File Id="qtquickcontrols2plugin_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Controls.2\qtquickcontrols2plugin.dll" />
+      </Component>
+      <Component Id="Controls.2_qmldir_cmp" Directory="MeteoWizard_qml_QtQuick_Controls.2_dir" Guid="{7ECE8039-45B6-41E0-B8C2-B3B0C3B970F8}">
+        <File Id="Controls.2_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Controls.2\qmldir" />
+      </Component>
+      <Component Id="Controls.2_plugins_qmltypes_cmp" Directory="MeteoWizard_qml_QtQuick_Controls.2_dir" Guid="{FDCB8079-B788-4EB4-80B3-F22185A936A2}">
+        <File Id="Controls.2_plugins_qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Controls.2\plugins.qmltypes" />
+      </Component>
+
+      <Component Id="windowplugin_dll_cmp" Directory="MeteoWizard_qml_QtQuick_Window.2_dir" Guid="{B56B3DA0-B4A6-4792-84E6-33BBDCADCD4B}">
+        <File Id="windowplugin_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Window.2\windowplugin.dll" />
+      </Component>
+      <Component Id="Window.2_qmldir_cmp" Directory="MeteoWizard_qml_QtQuick_Window.2_dir" Guid="{5936F715-873D-40EC-A7E8-53C247912BBF}">
+        <File Id="Window.2_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Window.2\qmldir" />
+      </Component>
+      <Component Id="Window.2_plugins_qmltypes_cmp" Directory="MeteoWizard_qml_QtQuick_Window.2_dir" Guid="{B027E1CB-3A88-4B1F-A7ED-CC645EAEFF2B}">
+        <File Id="Window.2_plugins_qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Window.2\plugins.qmltypes" />
+      </Component>
+
+      <Component Id="qquicklayoutsplugin_dll_cmp" Directory="MeteoWizard_qml_QtQuick_Layouts_dir" Guid="{4E8E941B-97D6-4E62-95EF-BCE1CDCADE93}">
+        <File Id="qquicklayoutsplugin_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Layouts\qquicklayoutsplugin.dll" />
+      </Component>
+      <Component Id="Layouts_qmldir_cmp" Directory="MeteoWizard_qml_QtQuick_Layouts_dir" Guid="{696888D8-A487-458C-A030-AC5A895322B4}">
+        <File Id="Layouts_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Layouts\qmldir" />
+      </Component>
+      <Component Id="Layouts_plugins_qmltypes_cmp" Directory="MeteoWizard_qml_QtQuick_Layouts_dir" Guid="{6BF5144E-C127-4F52-996A-60B3ED87A3C6}">
+        <File Id="Layouts_plugins_qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Layouts\plugins.qmltypes" />
+      </Component>
+
+      <Component Id="qtquicktemplates2plugin_dll_cmp" Directory="MeteoWizard_qml_QtQuick_Templates.2_dir" Guid="{DA1D026C-FE0C-4919-8F72-436B939B837F}">
+        <File Id="qtquicktemplates2plugin_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Templates.2\qtquicktemplates2plugin.dll" />
+      </Component>
+      <Component Id="Templates.2_qmldir_cmp" Directory="MeteoWizard_qml_QtQuick_Templates.2_dir" Guid="{AC563C9D-9101-4A3B-B89A-8370CE8C086F}">
+        <File Id="Templates.2_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Templates.2\qmldir" />
+      </Component>
+      <Component Id="Templates.2_plugins_qmltypes_cmp" Directory="MeteoWizard_qml_QtQuick_Templates.2_dir" Guid="{BFCDEDCB-5C07-42C9-B78B-2BE1D4105892}">
+        <File Id="Templates.2_plugins_qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick\Templates.2\plugins.qmltypes" />
+      </Component>
+
+      <Component Id="qtquick2plugin_dll_cmp" Directory="MeteoWizard_qml_QtQuick.2_dir" Guid="{9C08C6F9-57AF-43D4-94D5-1AEDBB4DBFD0}">
+        <File Id="qtquick2plugin_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick.2\qtquick2plugin.dll" />
+      </Component>
+      <Component Id="QtQuick.2_qmldir_cmp" Directory="MeteoWizard_qml_QtQuick.2_dir" Guid="{78E74D69-C6A4-4A71-9914-7D234DD0B3EF}">
+        <File Id="QtQuick.2_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick.2\qmldir" />
+      </Component>
+      <Component Id="QtQuick.2_plugins.qmltypes_cmp" Directory="MeteoWizard_qml_QtQuick.2_dir" Guid="{0EEEB12C-0DB0-4F8B-A22E-672F35E1D8D9}">
+        <File Id="QtQuick.2_plugins.qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtQuick.2\plugins.qmltypes" />
+      </Component>
+
+      <Component Id="declarative_location_dll_cmp" Directory="MeteoWizard_qml_QtLocation_dir" Guid="{A49567EA-0F64-4B4A-B242-EA7C2C1ADB5C}">
+        <File Id="declarative_location_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtLocation\declarative_location.dll" />
+      </Component>
+      <Component Id="QtLocation_qmldir_cmp" Directory="MeteoWizard_qml_QtLocation_dir" Guid="{E8132BC0-B4FD-41F5-8BD0-E92FF7A06C89}">
+        <File Id="QtLocation_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtLocation\qmldir" />
+      </Component>
+      <Component Id="QtLocation_plugins.qmltypes_cmp" Directory="MeteoWizard_qml_QtLocation_dir" Guid="{B54D1353-B4B3-40B0-85B7-D7344B4EDB73}">
+        <File Id="QtLocation_plugins.qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtLocation\plugins.qmltypes" />
+      </Component>
+
+      <Component Id="declarative_positioning_dll_cmp" Directory="MeteoWizard_qml_QtPositioning_dir" Guid="{46A0C520-FF90-4B50-AAE8-4F38BBF28E92}">
+        <File Id="declarative_positioning_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtPositioning\declarative_positioning.dll" />
+      </Component>
+      <Component Id="QtPositioning_qmldir_cmp" Directory="MeteoWizard_qml_QtPositioning_dir" Guid="{2F08ECF6-9C17-41E0-884D-AF22EE87B169}">
+        <File Id="QtPositioning_qmldir" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtPositioning\qmldir" />
+      </Component>
+      <Component Id="QtPositioning_plugins.qmltypes_cmp" Directory="MeteoWizard_qml_QtPositioning_dir" Guid="{836B0C3C-8A4F-4215-841C-485169F57103}">
+        <File Id="QtPositioning_plugins.qmltypes" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\qml\QtPositioning\plugins.qmltypes" />
+      </Component>
+
+    </ComponentGroup>
+
+    <Feature Id="ProductFeature" Title="Main Product" Level="1">
+      <ComponentGroupRef Id="MeteoWizard_app_group" />
+    </Feature>
+  </Product>
+</Wix>

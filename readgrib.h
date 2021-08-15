@@ -82,7 +82,7 @@ public:
 	grib2_c() : m_grib2DataFile(nullptr), m_nx(0), m_ny(0) {}
 	~grib2_c();
 
-	static grib2_c* read_info_grib(string filename);
+	static grib2_c* read_info_grib(std::string filename);
 	static bool set_grib_table();	
 	static std::string get_lval(double LvlVal1);
 

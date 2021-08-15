@@ -161,4 +161,3 @@ bool wiz_params_c::read_settings(wiz_params_c& wiz, ll_region_c* rg, std::vector
 	}
 	return true;
 }
-

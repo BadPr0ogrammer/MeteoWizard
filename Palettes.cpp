@@ -1,3 +1,5 @@
+#if defined(WITH_VTK)
+
 #include "Palettes.h"
 
 extern double MorelandPal[256][3];
@@ -1324,3 +1326,4 @@ double ViridisPal[256][3] = {
 { 0.983868, 0.904867, 0.136897 },
 { 0.993248, 0.906157, 0.143936 }
 };
+#endif

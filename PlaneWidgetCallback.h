@@ -1,3 +1,4 @@
+#if defined(WITH_VTK)
 #pragma once
 
 #include <vtkCommand.h>
@@ -18,3 +19,5 @@ public:
 	MeteoWizard* mainWindow;
 	PlaneWidgetCallback() : model(nullptr), mainWindow(nullptr) {}
 };
+#endif
+

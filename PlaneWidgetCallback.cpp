@@ -1,3 +1,5 @@
+#if defined(WITH_VTK)
+
 #include <QDoubleSpinBox>
 
 #include <vtkProperty.h>
@@ -29,3 +31,4 @@ void PlaneWidgetCallback::Execute(vtkObject* caller, unsigned long, void*)
 	mainWindow->m_cutSp[2]->setValue(c[2]);
 }
 
+#endif

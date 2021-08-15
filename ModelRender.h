@@ -1,3 +1,4 @@
+#if defined(WITH_VTK)
 #pragma once
 
 class vtkRenderer;
@@ -58,3 +59,4 @@ public:
 	void removeAllActors();
 	void setCutFunction();
 };
+#endif

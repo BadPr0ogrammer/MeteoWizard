@@ -93,7 +93,9 @@ public:
 
 protected slots:
 	void accept() override;
+#if defined(WITH_VTK)
 	void colorBoxValueChanged(double val);
+#endif
 };
 
 extern const wchar_t* const rgb_names_en[RGB_PRESET_NUM];

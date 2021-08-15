@@ -1,3 +1,5 @@
+#if defined(WITH_VTK)
+
 #include <vector>
 
 #include <vtkTypeInt64Array.h>
@@ -255,3 +257,5 @@ void VolumeRender::setPalette()
 	}
 }
 */
+
+#endif

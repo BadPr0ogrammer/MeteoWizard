@@ -1,3 +1,4 @@
+#if defined(WITH_VTK)
 #include <vector>
 
 #include <QGuiApplication>
@@ -332,3 +333,5 @@ _cutterMapper->Update();
 //	vtkNew<vtkLookupTable> _imageColorTable;
 //_imageColorTable->SetTableValue(0, 1, 1, 1, 0.5);
 //_imageColorTable->SetTableValue(i + 1, r, g, b, o);
+
+#endif

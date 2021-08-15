@@ -1,3 +1,4 @@
+#if defined(WITH_VTK)
 #pragma once
 
 #include <vector>
@@ -50,3 +51,4 @@ public:
 	void removeAddClippingPlanes(bool add);
 	void setPalette(const std::vector<double>& xv, const std::vector<double>& yv);
 };
+#endif
