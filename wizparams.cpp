@@ -5,7 +5,7 @@
 #include "shpproc.h"
 #include "region.h"
 
-bool wiz_params_c::write_settings(const wiz_params_c& wiz, ll_region_c* rg, const std::vector<shp_c*>& shp_files, const QString& fname)
+bool wiz_params_c::write_settings(const wiz_params_c& wiz, const ll_region_c& rg, const std::vector<shp_c*>& shp_files, const QString& fname)
 {
 	QJsonObject json;
 	json["msg_path"] = wiz.msg_path;
@@ -18,11 +18,11 @@ bool wiz_params_c::write_settings(const wiz_params_c& wiz, ll_region_c* rg, cons
 	json["msg_num"] = wiz.msg;
 	json["channel_idx"] = wiz.channel_idx;
 
-	json["region_x"] = rg->m_x;
-	json["region_y"] = rg->m_y;
-	json["region_width"] = rg->m_width >= 1 ? rg->m_width : 40;
-	json["region_height"] = rg->m_height >= 1 ? rg->m_height : 20;
-	json["region_step"] = rg->m_ll_step >= 0.01 ? rg->m_ll_step : 0.2;
+	json["region_x"] = rg.m_x;
+	json["region_y"] = rg.m_y;
+	json["region_width"] = rg.m_width >= 1 ? rg.m_width : 40;
+	json["region_height"] = rg.m_height >= 1 ? rg.m_height : 20;
+	json["region_step"] = rg.m_ll_step >= 0.01 ? rg.m_ll_step : 0.2;
 	{
 		const date_c& start = wiz.start;
 		const date_c& stop = wiz.stop;
@@ -79,7 +79,7 @@ bool wiz_params_c::write_settings(const wiz_params_c& wiz, ll_region_c* rg, cons
 	return ret;
 }
 
-bool wiz_params_c::read_settings(wiz_params_c& wiz, ll_region_c* rg, std::vector<shp_c*>& shp_files, const QString& fname)
+bool wiz_params_c::read_settings(wiz_params_c& wiz, ll_region_c& rg, std::vector<shp_c*>& shp_files, const QString& fname)
 {
 	QString val;
 	{
@@ -105,11 +105,11 @@ bool wiz_params_c::read_settings(wiz_params_c& wiz, ll_region_c* rg, std::vector
 	wiz.msg = json["msg_num"].toInt();
 	wiz.channel_idx = json["channel_idx"].toInt();
 	
-	rg->m_x = json["region_x"].toDouble();
-	rg->m_y = json["region_y"].toDouble();
-	rg->m_width = json["region_width"].toDouble();
-	rg->m_height = json["region_height"].toDouble();
-	rg->m_ll_step = json["region_step"].toDouble();
+	rg.m_x = json["region_x"].toDouble();
+	rg.m_y = json["region_y"].toDouble();
+	rg.m_width = json["region_width"].toDouble();
+	rg.m_height = json["region_height"].toDouble();
+	rg.m_ll_step = json["region_step"].toDouble();
 	{
 		QDateTime dt0 = QDateTime::fromString(json["start_date"].toString(), "yyyy-MM-dd hh:mm");
 		QDateTime dt1 = QDateTime::fromString(json["stop_date"].toString(), "yyyy-MM-dd hh:mm");

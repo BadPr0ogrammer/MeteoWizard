@@ -593,6 +593,12 @@
     <ClCompile Include="PlaneWidgetCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="atmrad1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMSNWCLib_i.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MSG_navigation_v1.02.h">
@@ -1095,6 +1101,12 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="atmrad1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EMSNWCLib_i.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

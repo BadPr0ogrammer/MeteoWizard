@@ -19,10 +19,10 @@ const char* char_set_names[CHAR_SET_NUM] = {
   "UTF-8", "UTF-16", "UTF-32"
 };
 */
-vector<shape_c*>* shape_c::shapeLoad(QString fname, int dbf_name, int dbf_pop, int charset)
+vector<shape_c*> shape_c::shapeLoad(QString fname, int dbf_name, int dbf_pop, int charset)
 {
   QTextCodec* codec = QTextCodec::codecForName("WINDOWS-1251");//char_set_names[charset]
-  vector<shape_c*>* ret = nullptr;  
+  vector<shape_c*> ret;  
 /*
 #ifdef _WINDOWS
   wchar_t name[MAX_PATH];
@@ -96,11 +96,8 @@ vector<shape_c*>* shape_c::shapeLoad(QString fname, int dbf_name, int dbf_pop, i
     }
 
     SHPDestroyObject(obj);
-    if (shape->m_pline) {
-        if (!ret)
-            ret = new vector<shape_c*>();
-        ret->push_back(shape);
-    }
+    if (shape->m_pline) 
+        ret.push_back(shape);
     else {
         qDebug() << "Ошибка чтения shp файла 4" << endl;
       delete shape;

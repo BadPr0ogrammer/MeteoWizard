@@ -53,26 +53,26 @@
         <File Id="settings_json" KeyPath="yes" Source="..\settings.json" />
       </Component>      
 
-      <Component Id="opencv_core3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{779BE713-21E0-478D-92EC-9400D8AF210F}">
-        <File Id="opencv_core3414_dll" KeyPath="yes" Source="..\release\opencv_core3414.dll" />
+      <Component Id="opencv_core3415_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{779BE713-21E0-478D-92EC-9400D8AF210F}">
+        <File Id="opencv_core3415_dll" KeyPath="yes" Source="..\release\opencv_core3415.dll" />
       </Component>
-      <Component Id="opencv_highgui3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{EA8C0826-C8AA-45B9-87F2-AB469C6A7E4D}">
-        <File Id="opencv_highgui3414_dll" KeyPath="yes" Source="..\release\opencv_highgui3414.dll" />
+      <Component Id="opencv_highgui3415_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{EA8C0826-C8AA-45B9-87F2-AB469C6A7E4D}">
+        <File Id="opencv_highgui3415_dll" KeyPath="yes" Source="..\release\opencv_highgui3415.dll" />
       </Component>
-      <Component Id="opencv_imgcodecs3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{44566B85-86DE-443B-8DEB-37C7550B93D7}">
-        <File Id="opencv_imgcodecs3414_dll" KeyPath="yes" Source="..\release\opencv_imgcodecs3414.dll" />
+      <Component Id="opencv_imgcodecs3415_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{44566B85-86DE-443B-8DEB-37C7550B93D7}">
+        <File Id="opencv_imgcodecs3415_dll" KeyPath="yes" Source="..\release\opencv_imgcodecs3415.dll" />
       </Component>
-      <Component Id="opencv_imgproc3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{D4ECB43E-18DA-4F69-8644-5C08570E7BD1}">
-        <File Id="opencv_imgproc3414_dll" KeyPath="yes" Source="..\release\opencv_imgproc3414.dll" />
+      <Component Id="opencv_imgproc3415_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{D4ECB43E-18DA-4F69-8644-5C08570E7BD1}">
+        <File Id="opencv_imgproc3415_dll" KeyPath="yes" Source="..\release\opencv_imgproc3415.dll" />
       </Component>
-      <Component Id="opencv_video3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{FB301234-33BD-4C78-9E5C-1A70B72318A4}">
-        <File Id="opencv_video3414_dll" KeyPath="yes" Source="..\release\opencv_video3414.dll" />
+      <Component Id="opencv_video3415_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{FB301234-33BD-4C78-9E5C-1A70B72318A4}">
+        <File Id="opencv_video3415_dll" KeyPath="yes" Source="..\release\opencv_video3415.dll" />
       </Component>
-      <Component Id="opencv_videoio3414_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{41F9C439-5A8B-47BB-80AC-6BF84833A382}">
-        <File Id="opencv_videoio3414_dll" KeyPath="yes" Source="..\release\opencv_videoio3414.dll" />
+      <Component Id="opencv_videoio3415_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{41F9C439-5A8B-47BB-80AC-6BF84833A382}">
+        <File Id="opencv_videoio3415_dll" KeyPath="yes" Source="..\release\opencv_videoio3415.dll" />
       </Component>
-      <Component Id="opencv_ffmpeg3414_64_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{DDD1A574-4AB6-4919-A31B-EE2BE121C683}">
-        <File Id="opencv_ffmpeg3414_64_dll" KeyPath="yes" Source="..\release\opencv_ffmpeg3414_64.dll" />
+      <Component Id="opencv_ffmpeg3415_64_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{DDD1A574-4AB6-4919-A31B-EE2BE121C683}">
+        <File Id="opencv_ffmpeg3415_64_dll" KeyPath="yes" Source="..\release\opencv_ffmpeg3415_64.dll" />
       </Component>
       <Component Id="Qt5QuickWidgets_dll_cmp" Directory="MeteoWizard_bin_dir" Guid="{6A587738-6E42-4246-82D1-7CC9945C482C}">
         <File Id="Qt5QuickWidgets_dll" KeyPath="yes" Source="C:\Qt\5.15.2\msvc2019_64\bin\Qt5QuickWidgets.dll" />

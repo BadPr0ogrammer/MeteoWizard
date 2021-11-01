@@ -23,10 +23,11 @@ using namespace std;
 
 cv::Mat* dwtOpen(const wchar_t* fname, const Rect& rc, int& strip_n0, int& strip_n1)
 {
+	cv::Mat* image;
 	int len;
 	if (!fname || (len = (int)wcslen(fname)) < MSAT_NAME_LEN) {
 		qDebug() << "Ошибка чтения файла 1" << endl;
-		return NULL;
+		return nullptr;
 	}
 	strip_n0 = 9 - MIN(8, MAX(1, (int)rc.y / MSAT_STRIP_DIM + 1));
 	strip_n1 = 9 - MIN(8, MAX(1, (int)(rc.y + rc.height) / MSAT_STRIP_DIM + 1));
@@ -41,12 +42,11 @@ cv::Mat* dwtOpen(const wchar_t* fname, const Rect& rc, int& strip_n0, int& strip
 	wchar_t* p = bn + len - 20;
 	*p = '0' + strip_n1;
 
-	cv::Mat* image = new cv::Mat(H, W, CV_16UC1, Scalar(0));
+	image = new cv::Mat(H, W, CV_16UC1);
 	uchar* ps = image->data;
 	if (!ps) {
-		delete image;
 		qDebug() << "Ошибка чтения файла 3" << endl;
-		return NULL;
+		return nullptr;
 	}
 	int f = FALSE;
 	wchar_t cached[LARGEBUF];
@@ -75,7 +75,8 @@ cv::Mat* dwtOpen(const wchar_t* fname, const Rect& rc, int& strip_n0, int& strip
 		if (!exist)
 			decomp->Write(cached);
 
-		int sz = (decomp->GetDataField().Size() + 7) / 8;
+		int sz = decomp->GetDataField().Size();
+		sz = (sz + 7) / 8;
 		uchar* pc = (uchar*)malloc(sz);
 		if (pc) {
 			decomp->GetDataField().Read(0, pc, sz);
@@ -102,8 +103,7 @@ end:
 	if (f)
 		flip(*image, *image, -1);
 	else {
-		delete image;
-		return NULL;
+		return nullptr;
 	}
 	return image;
 }

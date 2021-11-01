@@ -55,18 +55,6 @@ void SuplUnpack10(unsigned char* pc, unsigned short* ps, int w, int h)
     }
 }
 
-void SuplDebugMat(const cv::Mat* img)
-{
-#ifdef _DEBUG
-    cv::Mat* m = new cv::Mat(img->size(), CV_8UC3, Scalar(0));
-    double m0, m1;
-    minMaxLoc(*img, &m0, &m1);
-    convertScaleAbs(*img, *m, 255 / (m1 - m0), -m0 * 255 / (m1 - m0));
-    printf("");
-    delete m;
-#endif
-}
-
 mutex mtx;
 void SuplShowImage(cv::Mat* image)
 {

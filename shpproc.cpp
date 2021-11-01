@@ -20,29 +20,15 @@ using namespace cv;
 
 #include "MSG_navigation_v1.02.h"
 
-shp_c::~shp_c() 
-{
-	if (m_shape) {
-		for (int i = 0; i < m_shape->size(); i++)
-			delete (*m_shape)[i];
-		delete m_shape;
-	}
-}
-
-shp_c* shp_c::shpProc(QString name, const ll_region_c* const rc)
+shp_c* shp_c::shpProc(QString name, const ll_region_c& const rc)
 {
 	shp_c* sf = new shp_c();
 	sf->m_shp_name = name;
-
-	if (sf->m_shape = shape_c::shapeLoad(name, 4, 26, 0))// && sf->clipShp(rc, false)
-	{
-		return sf;
-	}
-	delete sf;
-	return nullptr;
+	sf->m_shape = shape_c::shapeLoad(name, 4, 26, 0);// && sf->clipShp(rc, false)
+	return sf;
 }
 
-vector<QGraphicsItemGroup*> shp_c::renderShp(int num, const ll_region_c* const rect, double scaleX, double scaleY, cv::Size sz)
+vector<QGraphicsItemGroup*> shp_c::renderShp(int num, const ll_region_c& const rect, double scaleX, double scaleY, cv::Size sz)
 {
 	vector<QGraphicsItemGroup*> group;
 	for (int i = 0; i < num; i++)
@@ -50,7 +36,7 @@ vector<QGraphicsItemGroup*> shp_c::renderShp(int num, const ll_region_c* const r
 
 	//if (!m_clip || !m_clip->size())
 		//return nullptr;
-	const shape_c* parts = m_shape->at(0);// m_clip->at(0);
+	const shape_c* parts = m_shape.at(0);// m_clip->at(0);
 	QString font_face = m_font_face.isEmpty() ? QString("Arial") : m_font_face;
 	int font_size = m_font_size < 9 || m_font_size > 24 ? 10 : m_font_size;
 	QFont font1(font_face, font_size);
@@ -61,8 +47,8 @@ vector<QGraphicsItemGroup*> shp_c::renderShp(int num, const ll_region_c* const r
 	QFontMetrics fm3(font3);
 	QFontMetrics& pfm = parts->m_popul < 1E5 ? fm1 : parts->m_popul < 1E6 ? fm2 : fm3;
 
-	for (int i = 0; i < m_shape->size(); i++) {//m_clip->size()
-		const shape_c* parts = m_shape->at(i);
+	for (int i = 0; i < m_shape.size(); i++) {//m_clip->size()
+		const shape_c* parts = m_shape.at(i);
 		if (!parts->m_pline->size()) {
 			continue;
 		}
@@ -75,8 +61,8 @@ vector<QGraphicsItemGroup*> shp_c::renderShp(int num, const ll_region_c* const r
 			for (int k = 0; k < cnt->size(); k++)
 			{
 				Point2f &pt = (*cnt)[k];
-				double x = scaleX * (pt.x - rect->m_x);
-				double y = scaleY * (rect->m_y + rect->m_height - pt.y);
+				double x = scaleX * (pt.x - rect.m_x);
+				double y = scaleY * (rect.m_y + rect.m_height - pt.y);
 				if (x >= 0 && x <= sz.width- 1 &&
 					y >= 0 && y <= sz.height - 1) {
 					pt1 = QPointF(x, y);

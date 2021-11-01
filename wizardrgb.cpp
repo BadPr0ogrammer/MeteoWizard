@@ -11,6 +11,10 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <atlbase.h>
+#include <atlsafe.h>
+#include <comutil.h>
+
 #include "inc.h"
 #include "meteowizard.h"
 #include "datec.h"
@@ -25,6 +29,8 @@
 #include "wizparams.h"
 #include "local_str.h"
 #include "atmrad.h"
+#include "atmrad1.h"
+#include "EMSNWCLib_i.h"
 
 using namespace std;
 using namespace cv;
@@ -91,9 +97,9 @@ QString rgbSetLabel(params_channels_c& p)
 
 QWizardPage* MeteoWizard::createPostProcPage()
 {
-	if (m_wiz_params->rgb_channels[0][0] == T_NONE) {
-		memcpy(m_wiz_params->rgb_params, rgb_params_0, sizeof(rgb_params_0));
-		memcpy(m_wiz_params->rgb_channels, rgb_channels_0, sizeof(rgb_channels_0));
+	if (m_wiz_params.rgb_channels[0][0] == T_NONE) {
+		memcpy(m_wiz_params.rgb_params, rgb_params_0, sizeof(rgb_params_0));
+		memcpy(m_wiz_params.rgb_channels, rgb_channels_0, sizeof(rgb_channels_0));
 	}
 	QWizardPage* page = new QWizardPage;
 
@@ -109,7 +115,7 @@ QWizardPage* MeteoWizard::createPostProcPage()
 	hbox->addWidget(new QLabel(str_generate_rgb));
 
 	m_rgb_flag = new QCheckBox;
-	m_rgb_flag->setChecked(m_wiz_params->rgb);
+	m_rgb_flag->setChecked(m_wiz_params.rgb);
 
 	hbox->setAlignment(m_rgb_flag, Qt::AlignCenter);
 	hbox->addWidget(m_rgb_flag);
@@ -126,7 +132,7 @@ QWizardPage* MeteoWizard::createPostProcPage()
 	grid->addWidget(m_rgbSetList, 0, 1, 2, 7);
 	m_rgbSetList->setFixedHeight(60);
 
-	params_channels_c params_chnls(m_wiz_params->rgb_channels[curSel], m_wiz_params->rgb_params[curSel]);
+	params_channels_c params_chnls(m_wiz_params.rgb_channels[curSel], m_wiz_params.rgb_params[curSel]);
 	QListWidgetItem* item = new QListWidgetItem(rgbSetLabel(params_chnls));
 	item->setData(Qt::UserRole, QVariant::fromValue(params_chnls));
 	m_rgbSetList->addItem(item);
@@ -170,8 +176,8 @@ QWizardPage* MeteoWizard::createPostProcPage()
 			m_rgb_dimin[i]->addItem(channel_tags[j]);
 			m_rgb_subtr[i]->addItem(channel_tags[j]);
 		}
-		m_rgb_dimin[i]->setCurrentIndex(m_wiz_params->rgb_channels[curSel][2 * i]);
-		m_rgb_subtr[i]->setCurrentIndex(m_wiz_params->rgb_channels[curSel][2 * i + 1]);
+		m_rgb_dimin[i]->setCurrentIndex(m_wiz_params.rgb_channels[curSel][2 * i]);
+		m_rgb_subtr[i]->setCurrentIndex(m_wiz_params.rgb_channels[curSel][2 * i + 1]);
 
 		QLabel* m0 = new QLabel("Min:");
 		m0->setFixedWidth(26);
@@ -182,7 +188,7 @@ QWizardPage* MeteoWizard::createPostProcPage()
 		m_thres_min[i]->setMaximum(100000);
 
 		grid->addWidget(m_thres_min[i], i + 3, 5);
-		m_thres_min[i]->setValue(m_wiz_params->rgb_params[curSel][3 * i]);
+		m_thres_min[i]->setValue(m_wiz_params.rgb_params[curSel][3 * i]);
 
 		QLabel* m1 = new QLabel("Max:");
 		m1->setFixedWidth(26);
@@ -193,7 +199,7 @@ QWizardPage* MeteoWizard::createPostProcPage()
 		m_thres_max[i]->setMaximum(100000);
 
 		grid->addWidget(m_thres_max[i], i + 3, 7);
-		m_thres_max[i]->setValue(m_wiz_params->rgb_params[curSel][3 * i + 1]);
+		m_thres_max[i]->setValue(m_wiz_params.rgb_params[curSel][3 * i + 1]);
 
 		QLabel* g = new QLabel("Gamma:");
 		g->setFixedWidth(26);
@@ -204,45 +210,45 @@ QWizardPage* MeteoWizard::createPostProcPage()
 		m_gamma[i]->setMaximum(5);
 
 		grid->addWidget(m_gamma[i], i + 3, 9);
-		m_gamma[i]->setValue(m_wiz_params->rgb_params[curSel][3 * i + 2]);
+		m_gamma[i]->setValue(m_wiz_params.rgb_params[curSel][3 * i + 2]);
 	}
 
 	connect(m_rgb_preset, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [=](int idx) {
 		for (int i = 0; i < 3; i++) {
-			m_rgb_dimin[i]->setCurrentIndex(m_wiz_params->rgb_channels[idx][2 * i]);
-			m_rgb_subtr[i]->setCurrentIndex(m_wiz_params->rgb_channels[idx][2 * i + 1]);
+			m_rgb_dimin[i]->setCurrentIndex(m_wiz_params.rgb_channels[idx][2 * i]);
+			m_rgb_subtr[i]->setCurrentIndex(m_wiz_params.rgb_channels[idx][2 * i + 1]);
 
-			m_thres_min[i]->setValue(m_wiz_params->rgb_params[idx][3 * i]);
-			m_thres_max[i]->setValue(m_wiz_params->rgb_params[idx][3 * i + 1]);
-			m_gamma[i]->setValue(m_wiz_params->rgb_params[idx][3 * i + 2]);
+			m_thres_min[i]->setValue(m_wiz_params.rgb_params[idx][3 * i]);
+			m_thres_max[i]->setValue(m_wiz_params.rgb_params[idx][3 * i + 1]);
+			m_gamma[i]->setValue(m_wiz_params.rgb_params[idx][3 * i + 2]);
 		}
 		});
 
 	for (int i = 0; i < 3; i++) {
 		connect(m_rgb_dimin[i], static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [=](int k) {
 			int idx = m_rgb_preset->currentIndex();
-			m_wiz_params->rgb_channels[idx][2 * i] = k;
+			m_wiz_params.rgb_channels[idx][2 * i] = k;
 			});
 		connect(m_rgb_subtr[i], static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [=](int k) {
 			int idx = m_rgb_preset->currentIndex();
-			m_wiz_params->rgb_channels[idx][2 * i + 1] = k;
+			m_wiz_params.rgb_channels[idx][2 * i + 1] = k;
 			});
 		connect(m_thres_min[i], static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [=](double d) {
 			int idx = m_rgb_preset->currentIndex();
-			m_wiz_params->rgb_params[idx][3 * i] = d;
+			m_wiz_params.rgb_params[idx][3 * i] = d;
 			});
 		connect(m_thres_max[i], static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [=](double d) {
 			int idx = m_rgb_preset->currentIndex();
-			m_wiz_params->rgb_params[idx][3 * i + 1] = d;
+			m_wiz_params.rgb_params[idx][3 * i + 1] = d;
 			});
 		connect(m_gamma[i], static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [=](double d) {
 			int idx = m_rgb_preset->currentIndex();
-			m_wiz_params->rgb_params[idx][3 * i + 2] = d;
+			m_wiz_params.rgb_params[idx][3 * i + 2] = d;
 			});
 	}
 	connect(m_rgb_flag, static_cast<void(QCheckBox::*)(int)>(&QCheckBox::stateChanged), [=](int state) {
 		bool f = state == Qt::Checked;
-		m_wiz_params->rgb = f;
+		m_wiz_params.rgb = f;
 		m_rgb_preset->setEnabled(f);
 		for (int i = 0; i < 3; i++) {
 			m_rgb_dimin[i]->setEnabled(f);
@@ -284,19 +290,36 @@ QWizardPage* MeteoWizard::createPostProcPage()
 
 cv::Mat* MeteoWizard::makeRgb(date_c& date, const params_channels_c& par_chnl)
 {
+	cv::Mat* ret;
 	slot_c src;
+	wchar_t buf[100];
 	for (auto chnl : par_chnl.channels) {
 		if (chnl > 0) {
-			wchar_t buf[100];
 			QString sch = channel_tags[chnl];
-			swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, sch.utf16(), 7, date.m_year, date.m_mon, date.m_day, date.m_hour, date.m_mn);
+			swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params.msg, m_wiz_params.msg, sch.utf16(), 7, date.m_year, date.m_mon, date.m_day, date.m_hour, date.m_mn);
 
-			cv::Mat* img0 = openMsg(buf, m_ll_region);
-
-			SuplDebugMat(img0);
-
-			src.m_img[chnl] = img0;
+			if (!(src.m_img[chnl] = openMsg(buf, m_ll_region)))
+				return nullptr;
 		}
 	}
-	return AtmradMakeDif(&src, par_chnl.channels, par_chnl.params);
+	
+	CComPtr<IHritObject> obj;
+	double calibration[24], *pc = nullptr;
+	if (SUCCEEDED(obj.CoCreateInstance(CLSID_HritObject))) {
+		_bstr_t bstr(buf);
+		if (SUCCEEDED(obj->ReadMSGInfo(bstr))) {
+			SAFEARRAYBOUND Bound;
+			Bound.lLbound = 0;
+			Bound.cElements = 24;
+			SAFEARRAY* psa = SafeArrayCreate(VT_R8, 1, &Bound); //??? pptr ?
+			if (SUCCEEDED(obj->get_CalibrationTbl(&psa))) {
+				CComSafeArray<double> comarr(psa);
+				for (int i = 0; i < 24; i++)
+					calibration[i] = comarr.GetAt(i);
+				pc = calibration;
+				InitInfoCan();
+			}
+		}
+	}
+	return AtmradMakeDif(src, par_chnl.channels, par_chnl.params, pc);
 }

@@ -33,7 +33,7 @@
     <PlatformToolset>v142</PlatformToolset>
     <OutputDirectory>debug\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <ConfigurationType>Application</ConfigurationType>
     <IntermediateDirectory>debug\</IntermediateDirectory>
     <PrimaryOutput>MeteoWizard</PrimaryOutput>
@@ -80,7 +80,7 @@
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;..\opencv-3.4.14\build;..\opencv-3.4.14\modules\core\include;..\opencv-3.4.14\modules\imgproc\include;..\opencv-3.4.14\modules\imgcodecs\include;..\opencv-3.4.14\modules\highgui\include;..\opencv-3.4.14\modules\videoio\include;shapelib;win32;met-5.2_bugfix\src\basic\vx_cal;met-5.2_bugfix\src\basic\vx_config;met-5.2_bugfix\src\basic\vx_log;met-5.2_bugfix\src\basic\vx_math;met-5.2_bugfix\src\basic\vx_util;met-5.2_bugfix\src\libcode\vx_data2d;met-5.2_bugfix\src\libcode\vx_data2d_factory;met-5.2_bugfix\src\libcode\vx_data2d_grib2;met-5.2_bugfix\src\libcode\vx_data2d_grib;met-5.2_bugfix\src\libcode\vx_grid;g2clib-1.6.0;met-5.2_bugfix;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;..\opencv-3.4.15\build;..\opencv-3.4.15\modules\core\include;..\opencv-3.4.15\modules\imgproc\include;..\opencv-3.4.15\modules\imgcodecs\include;..\opencv-3.4.15\modules\highgui\include;..\opencv-3.4.15\modules\videoio\include;shapelib;win32;met-5.2_bugfix\src\basic\vx_cal;met-5.2_bugfix\src\basic\vx_config;met-5.2_bugfix\src\basic\vx_log;met-5.2_bugfix\src\basic\vx_math;met-5.2_bugfix\src\basic\vx_util;met-5.2_bugfix\src\libcode\vx_data2d;met-5.2_bugfix\src\libcode\vx_data2d_factory;met-5.2_bugfix\src\libcode\vx_data2d_grib2;met-5.2_bugfix\src\libcode\vx_data2d_grib;met-5.2_bugfix\src\libcode\vx_grid;g2clib-1.6.0;met-5.2_bugfix;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -106,8 +106,8 @@
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opencv_core3414.lib;opencv_imgcodecs3414.lib;opencv_imgproc3414.lib;opencv_highgui3414.lib;$(QTDIR)\lib\Qt5PositioningQuick.lib;$(QTDIR)\lib\Qt5QmlModels.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\opencv-3.4.14\build\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core3415.lib;opencv_imgcodecs3415.lib;opencv_imgproc3415.lib;opencv_highgui3415.lib;$(QTDIR)\lib\Qt5PositioningQuick.lib;$(QTDIR)\lib\Qt5QmlModels.lib;shell32.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\opencv-3.4.15\build\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -145,7 +145,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;MSG\include;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;shapelib;..\opencv-3.4.14\build;..\opencv-3.4.14\modules\core\include;..\opencv-3.4.14\modules\imgproc\include;..\opencv-3.4.14\modules\imgcodecs\include;..\opencv-3.4.14\modules\highgui\include;..\opencv-3.4.14\modules\videoio\include;..\opencv-3.4.14\3rdparty\libjasper;..\opencv-3.4.14\3rdparty\libpng;..\opencv-3.4.14\3rdparty\libjpeg;win32;met-5.2_bugfix\src\basic\vx_cal;met-5.2_bugfix\src\basic\vx_config;met-5.2_bugfix\src\basic\vx_log;met-5.2_bugfix\src\basic\vx_math;met-5.2_bugfix\src\basic\vx_util;met-5.2_bugfix\src\libcode\vx_data2d;met-5.2_bugfix\src\libcode\vx_data2d_factory;met-5.2_bugfix\src\libcode\vx_data2d_grib2;met-5.2_bugfix\src\libcode\vx_data2d_grib;met-5.2_bugfix\src\libcode\vx_grid;g2clib-1.6.0;met-5.2_bugfix;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;MSG\include;2.06\DISE;2.06\COMP\Inc;2.06\COMP\JPEG\Inc;2.06\COMP\WT\Inc;2.06\COMP\T4\Inc;shapelib;..\opencv-3.4.15\build;..\opencv-3.4.15\modules\core\include;..\opencv-3.4.15\modules\imgproc\include;..\opencv-3.4.15\modules\imgcodecs\include;..\opencv-3.4.15\modules\highgui\include;..\opencv-3.4.15\modules\videoio\include;..\opencv-3.4.15\3rdparty\libjasper;..\opencv-3.4.15\3rdparty\libpng;..\opencv-3.4.15\3rdparty\libjpeg;win32;met-5.2_bugfix\src\basic\vx_cal;met-5.2_bugfix\src\basic\vx_config;met-5.2_bugfix\src\basic\vx_log;met-5.2_bugfix\src\basic\vx_math;met-5.2_bugfix\src\basic\vx_util;met-5.2_bugfix\src\libcode\vx_data2d;met-5.2_bugfix\src\libcode\vx_data2d_factory;met-5.2_bugfix\src\libcode\vx_data2d_grib2;met-5.2_bugfix\src\libcode\vx_data2d_grib;met-5.2_bugfix\src\libcode\vx_grid;g2clib-1.6.0;met-5.2_bugfix;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -163,8 +163,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opencv_core3414d.lib;opencv_imgcodecs3414d.lib;opencv_imgproc3414d.lib;opencv_highgui3414d.lib;$(QTDIR)\lib\Qt5PositioningQuickd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\opencv-3.4.14\build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_core3415d.lib;opencv_imgcodecs3415d.lib;opencv_imgproc3415d.lib;opencv_highgui3415d.lib;$(QTDIR)\lib\Qt5PositioningQuickd.lib;shell32.lib;comsuppwd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\opencv-3.4.15\build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -226,6 +226,8 @@
     <ClCompile Include="2.06\DISE\CxRITFile.cpp" />
     <ClCompile Include="2.06\DISE\CxRITFileHeaderRecords.cpp" />
     <ClCompile Include="atmrad.cpp" />
+    <ClCompile Include="atmrad1.cpp" />
+    <ClCompile Include="EMSNWCLib_i.c" />
     <ClCompile Include="g2clib-1.6.0\cmplxpack.c" />
     <ClCompile Include="g2clib-1.6.0\compack.c" />
     <ClCompile Include="g2clib-1.6.0\comunpack.c" />
@@ -405,6 +407,8 @@
     <ClInclude Include="2.06\DISE\MSGTime.h" />
     <ClInclude Include="2.06\DISE\MSGTime_impl.h" />
     <ClInclude Include="atmrad.h" />
+    <ClInclude Include="atmrad1.h" />
+    <ClInclude Include="EMSNWCLib_i.h" />
     <ClInclude Include="g2clib-1.6.0\drstemplates.h" />
     <ClInclude Include="g2clib-1.6.0\grib2.h" />
     <ClInclude Include="g2clib-1.6.0\gridtemplates.h" />

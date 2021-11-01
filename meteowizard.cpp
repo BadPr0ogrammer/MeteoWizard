@@ -23,6 +23,7 @@
 #include "supl.h"
 #include "wizparams.h"
 #include "local_str.h"
+#include "tpl.h"
 
 using namespace std;
 using namespace cv;
@@ -36,11 +37,10 @@ const char* channel_tags[T_NUM] = { "", "VIS006", "VIS008", "IR_016", "IR_039", 
 MeteoWizard::MeteoWizard(QWidget* parent) : QWizard(parent),
 m_msg_path(nullptr), m_jpg_path(nullptr), m_shp_path(nullptr), m_fname_pref(nullptr), m_msg_type(nullptr), m_channel_tag(nullptr), m_calendar0(nullptr), m_calendar1(nullptr),
 m_minutes0(nullptr), m_minutes1(nullptr), m_arrow_scale(nullptr), m_arrow_color(nullptr), m_arrow_width(nullptr), m_region_step(nullptr), m_model_cntrs(nullptr), m_view_cntrs(nullptr),
-m_osm(nullptr), m_dates(new std::vector<date_c>()), m_shp_files(new std::vector<shp_c*>()), m_wiz_params(new wiz_params_c())
+m_osm(nullptr)
 {
-	m_wiz_params->working_dir = QDir::currentPath();
-	m_ll_region = new ll_region_c();
-	m_json = m_wiz_params->read_settings(*m_wiz_params, m_ll_region, *m_shp_files, "settings.json");
+	m_wiz_params.working_dir = QDir::currentPath();
+	m_json = m_wiz_params.read_settings(m_wiz_params, m_ll_region, m_shp_files, "settings.json");
 }
 
 QWizardPage* MeteoWizard::createIntroPage()
@@ -60,7 +60,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		layout->addLayout(hbox);
 		{
 			hbox->addWidget(new QLabel(str_input_files_msg_path), 0, 0);
-			m_msg_path = new QLineEdit(!m_json ? "debug/Data/MSG" : m_wiz_params->msg_path);
+			m_msg_path = new QLineEdit(!m_json ? "debug/Data/MSG" : m_wiz_params.msg_path);
 
 			hbox->addWidget(m_msg_path, 0, 1);
 			m_msg_path->setFixedWidth(400);
@@ -75,7 +75,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		}
 		{
 			hbox->addWidget(new QLabel(str_output_files_jpg_path), 1, 0);
-			m_jpg_path = new QLineEdit(!m_json ? "debug/Data/Images" : m_wiz_params->jpg_path);
+			m_jpg_path = new QLineEdit(!m_json ? "debug/Data/Images" : m_wiz_params.jpg_path);
 
 			hbox->addWidget(m_jpg_path, 1, 1);
 			m_jpg_path->setFixedWidth(400);
@@ -90,7 +90,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		}
 		{
 			hbox->addWidget(new QLabel(str_input_files_shp_path), 2, 0);
-			m_shp_path = new QLineEdit(!m_json ? "debug/Data/Shp" : m_wiz_params->shp_path);
+			m_shp_path = new QLineEdit(!m_json ? "debug/Data/Shp" : m_wiz_params.shp_path);
 
 			hbox->addWidget(m_shp_path, 2, 1);
 			m_shp_path->setFixedWidth(400);
@@ -105,13 +105,13 @@ QWizardPage* MeteoWizard::createIntroPage()
 		}
 
 		hbox->addWidget(new QLabel(str_output_file_name_prefix), 3, 0);
-		m_fname_pref = new QLineEdit(!m_json ? "Test" : m_wiz_params->fname_pref);
+		m_fname_pref = new QLineEdit(!m_json ? "Test" : m_wiz_params.fname_pref);
 		m_fname_pref->setFixedWidth(150);
 		hbox->addWidget(m_fname_pref, 3, 1);
 
 		hbox->addWidget(new QLabel(str_satellite_type), 4, 0);
 		m_msg_type = new QCheckBox;
-		m_msg_type->setChecked(!m_json ? true : m_wiz_params->msg == 4);
+		m_msg_type->setChecked(!m_json ? true : m_wiz_params.msg == 4);
 		hbox->addWidget(m_msg_type, 4, 1);
 
 		hbox->addWidget(new QLabel(str_main_channel), 5, 0);
@@ -119,7 +119,7 @@ QWizardPage* MeteoWizard::createIntroPage()
 		m_channel_tag->setFixedWidth(150);
 		for (int i = 1; i < _countof(channel_tags); i++)
 			m_channel_tag->addItem(channel_tags[i]);
-		m_channel_tag->setCurrentIndex(!m_json ? 4 : m_wiz_params->channel_idx);
+		m_channel_tag->setCurrentIndex(!m_json ? 4 : m_wiz_params.channel_idx);
 		hbox->addWidget(m_channel_tag, 5, 1);
 	}
 	layout->addStretch();
@@ -141,7 +141,7 @@ QVBoxLayout* MeteoWizard::addDateTimePanel(bool from, const char* name)
 		calendar = m_calendar1 = new QCalendarWidget;
 	vbox->addWidget(calendar);
 	
-	date_c& d = from ? m_wiz_params->start : m_wiz_params->stop;
+	date_c& d = from ? m_wiz_params.start : m_wiz_params.stop;
 	{
 		QDate date;
 		date.setDate(d.m_year, d.m_mon, d.m_day);
@@ -182,8 +182,8 @@ QWizardPage* MeteoWizard::createDateTimePage()
 	hbox->setContentsMargins(12, 12, 12, 12);
 
 	if (!m_json) {
-		m_wiz_params->start = date_c(2019, 11, 21, 10, 0);
-		m_wiz_params->stop = date_c(2019, 11, 21, 12, 0);
+		m_wiz_params.start = date_c(2019, 11, 21, 10, 0);
+		m_wiz_params.stop = date_c(2019, 11, 21, 12, 0);
 	}
 	hbox->addLayout(addDateTimePanel(true, str_date_from));
 	hbox->addLayout(addDateTimePanel(false, str_date_to));
@@ -257,14 +257,14 @@ QWizardPage* MeteoWizard::createShapePage()
 		if (!m_json) {
 			shp_c* shp = new shp_c();
 			shp->m_shp_name = "ne_10m_coastline.shp";
-			m_shp_files->push_back(shp);
+			m_shp_files.push_back(shp);
 			shp = new shp_c();
 			shp->m_shp_name = "ne_10m_populated_places_simple.shp";
-			m_shp_files->push_back(shp);
+			m_shp_files.push_back(shp);
 		}
-		if (m_shp_files && m_shp_files->size()) {
+		if (m_shp_files.size()) {
 			QStandardItem* root = m_model_cntrs->invisibleRootItem();
-			for (shp_c* p : *m_shp_files) {
+			for (shp_c* p : m_shp_files) {
 				cntrs_add_row(p, root);
 			}
 		}
@@ -274,7 +274,7 @@ QWizardPage* MeteoWizard::createShapePage()
 		m_view_cntrs->setSelectionMode(QAbstractItemView::SingleSelection);
 		m_view_cntrs->setSelectionBehavior(QAbstractItemView::SelectItems);
 		m_view_cntrs->setModel(m_model_cntrs);
-		m_view_cntrs->setItemDelegate(new cntrs_item_delegate_c(m_shp_files, m_view_cntrs));
+		m_view_cntrs->setItemDelegate(new cntrs_item_delegate_c(&m_shp_files, m_view_cntrs));
 
 		vbox2->addWidget(m_view_cntrs);
 		{
@@ -312,12 +312,8 @@ QWizardPage* MeteoWizard::createShapePage()
 					shp_c* shp = shp_c::shpProc(fnames[i].right(n + 1), m_ll_region);
 					//shp_c* shp = new shp_c();
 					//shp->m_shp_name = QString::fromWCharArray(buf + n + 1);
-					if (shp)
-					{
-						if (!m_shp_files)
-							m_shp_files = new vector<shp_c*>();
-						m_shp_files->push_back(shp);
-
+					if (shp) {
+						m_shp_files.push_back(shp);
 						cntrs_add_row(shp, root);
 					}
 					else {
@@ -342,7 +338,7 @@ QWizardPage* MeteoWizard::createShapePage()
 				int row = list[0].row();
 				m_model_cntrs->removeRow(row);
 
-				m_shp_files->erase(m_shp_files->begin() + row);
+				m_shp_files.erase(m_shp_files.begin() + row);
 				});
 			vbox2->addLayout(hbox);
 		}
@@ -355,14 +351,14 @@ QWizardPage* MeteoWizard::createShapePage()
 
 	m_arrow_scale = new QDoubleSpinBox;
 
-	m_arrow_scale->setValue(!m_json ? 1 : m_wiz_params->arrow_scale);
+	m_arrow_scale->setValue(!m_json ? 1 : m_wiz_params.arrow_scale);
 	m_arrow_scale->setSingleStep(0.1);
 	layout->addWidget(m_arrow_scale, 2, 1);
 
 	layout->addWidget(new QLabel(str_color), 3, 0);
 
 	m_arrow_color = new SelectColorButton(this, page);
-	m_arrow_color->setColor(!m_json ? QColor(0, 255, 0) : m_wiz_params->arrow_color);
+	m_arrow_color->setColor(!m_json ? QColor(0, 255, 0) : m_wiz_params.arrow_color);
 	layout->addWidget(m_arrow_color, 3, 1);
 	m_arrow_color->setFixedWidth(60);
 
@@ -370,7 +366,7 @@ QWizardPage* MeteoWizard::createShapePage()
 
 	m_arrow_width = new QDoubleSpinBox;
 
-	m_arrow_width->setValue(!m_json ? 1 : m_wiz_params->arrow_width);
+	m_arrow_width->setValue(!m_json ? 1 : m_wiz_params.arrow_width);
 	m_arrow_width->setSingleStep(0.1);
 	layout->addWidget(m_arrow_width, 4, 1);
 
@@ -454,13 +450,13 @@ QWizardPage* MeteoWizard::createRegionPage()
 	QVBoxLayout* layout = new QVBoxLayout;
 
 	if (!m_json) {
-		m_ll_region->m_x = 0;
-		m_ll_region->m_width = 40;
-		m_ll_region->m_y = 30;
-		m_ll_region->m_height = 20;
-		m_ll_region->m_ll_step = 2.0;
+		m_ll_region.m_x = 0;
+		m_ll_region.m_width = 40;
+		m_ll_region.m_y = 30;
+		m_ll_region.m_height = 20;
+		m_ll_region.m_ll_step = 1;
 	}
-	m_osm = quick_map_create(NULL, m_ll_region->m_x, m_ll_region->m_x + m_ll_region->m_width, m_ll_region->m_y + m_ll_region->m_height, m_ll_region->m_y);
+	m_osm = quick_map_create(NULL, m_ll_region.m_x, m_ll_region.m_x + m_ll_region.m_width, m_ll_region.m_y + m_ll_region.m_height, m_ll_region.m_y);
 	layout->addWidget((QWidget*)m_osm);
 
 	QHBoxLayout* hbox = new QHBoxLayout;
@@ -468,7 +464,7 @@ QWizardPage* MeteoWizard::createRegionPage()
 
 	m_region_step = new QDoubleSpinBox;
 
-	m_region_step->setValue(m_ll_region->m_ll_step);
+	m_region_step->setValue(m_ll_region.m_ll_step);
 	m_region_step->setSingleStep(0.1);
 	hbox->addWidget(m_region_step);
 	hbox->addStretch();
@@ -479,23 +475,19 @@ QWizardPage* MeteoWizard::createRegionPage()
 	return page;
 }
 
-cv::Mat* MeteoWizard::openMsg(const wchar_t* fname, ll_region_c* ll_region)
+cv::Mat* MeteoWizard::openMsg(const wchar_t* fname, ll_region_c& ll_region)
 {
+	cv::Mat* ret = nullptr;
 	int n0 = 0, n1 = 0;
-	cv::Mat* msg = dwtOpen(fname, ll_region->m_rect, n0, n1);
-	if (msg) {
-		SuplDebugMat(msg);
-
-		Rect rc1(ll_region->m_rect);
+	cv::Mat* msg;
+	if (!(msg = dwtOpen(fname, ll_region.m_rect, n0, n1)))
+		return nullptr;
+	{
+		Rect rc1(ll_region.m_rect);
 		rc1.y -= (8 - n0) * MSAT_STRIP_DIM;
 		cv::Mat* clip = new cv::Mat(*msg, rc1);
-		SuplDebugMat(clip);
-
-		cv::Mat* remap = ll_region->imgRemap(clip);
-		SuplDebugMat(remap);
-
-		delete msg;
-		return remap;
+		if (ret = ll_region.imgRemap(*clip)) 
+			return ret;
 	}
 	return nullptr;
 }
@@ -505,12 +497,12 @@ void MeteoWizard::accept()
 	QGuiApplication::setOverrideCursor(Qt::WaitCursor);
 	QGuiApplication::processEvents();
 
-	m_wiz_params->msg_path = m_msg_path->text();
-	m_wiz_params->jpg_path = m_jpg_path->text();
-	m_wiz_params->shp_path = m_shp_path->text();
-	m_wiz_params->fname_pref = m_fname_pref->text();
-	m_wiz_params->arrow_scale = m_arrow_scale->value();
-	m_wiz_params->arrow_width = m_arrow_width->value();
+	m_wiz_params.msg_path = m_msg_path->text();
+	m_wiz_params.jpg_path = m_jpg_path->text();
+	m_wiz_params.shp_path = m_shp_path->text();
+	m_wiz_params.fname_pref = m_fname_pref->text();
+	m_wiz_params.arrow_scale = m_arrow_scale->value();
+	m_wiz_params.arrow_width = m_arrow_width->value();
 
 	int year0 = m_calendar0->selectedDate().year();
 	int mon0 = m_calendar0->selectedDate().month();
@@ -528,52 +520,46 @@ void MeteoWizard::accept()
 	int hour1 = minutes1 / 4;
 	int mn1 = 15 * (minutes1 % 4);
 
-	m_wiz_params->start = date_c(year0, mon0, day0, hour0, mn0);
-	m_wiz_params->stop = date_c(year1, mon1, day1, hour1, mn1);
+	m_wiz_params.start = date_c(year0, mon0, day0, hour0, mn0);
+	m_wiz_params.stop = date_c(year1, mon1, day1, hour1, mn1);
 
 	bool msg_type = m_msg_type->isChecked();
-	m_wiz_params->msg = msg_type ? 4 : 3;
+	m_wiz_params.msg = msg_type ? 4 : 3;
 
-	m_dates->clear();
-	m_wiz_params->start.hour_range(m_wiz_params->stop, m_dates);
+	m_dates.clear();
+	m_wiz_params.start.hour_range(m_wiz_params.stop, &m_dates);
 
-	if (m_dates->size() < 2) {
+	if (m_dates.size() < 2) {
 		QGuiApplication::restoreOverrideCursor();
 		QMessageBox::information(nullptr, "MeteoWizard", str_time_slot_undermine_message);
 		QDialog::reject();
 		return;
 	}
 
-	m_wiz_params->channel_idx = m_channel_tag->currentIndex();
+	m_wiz_params.channel_idx = m_channel_tag->currentIndex();
 
-	m_wiz_params->arrow_color = m_arrow_color->getColor();
+	m_wiz_params.arrow_color = m_arrow_color->getColor();
 
-	m_ll_region->m_ll_step = m_region_step->value();
+	m_ll_region.m_ll_step = m_region_step->value();
 
 	double left, right, top, bottom;
 	QObject* rect = m_osm->rootObject()->findChild<QObject*>("redRect");
 	quick_map_done(rect, m_osm, left, right, top, bottom);
 
-	m_ll_region->m_x = left;
-	m_ll_region->m_width = right - left;
-	m_ll_region->m_y = bottom;
-	m_ll_region->m_height = top - bottom;
+	m_ll_region.m_x = left;
+	m_ll_region.m_width = right - left;
+	m_ll_region.m_y = bottom;
+	m_ll_region.m_height = top - bottom;
 
-	m_ll_region->geo2Rect();
+	m_ll_region.geo2Rect();
 
-	if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->shp_path))
+	if (!QDir::setCurrent(m_wiz_params.working_dir) || !QDir::setCurrent(m_wiz_params.shp_path))
 		qDebug() << str_error_blank << "SetCurrentDirectory\n";
 
-	for (int i = 0; i < m_shp_files->size(); i++) {
-		shp_c* shp = (*m_shp_files)[i];
-		shp_c* shp0 = shp_c::shpProc(shp->m_shp_name, m_ll_region);
-		if (shp0) {
-			vector<shape_c*>* tmp = shp0->m_shape;
-			shp0->m_shape = nullptr;
-			delete shp0;
-			shp->m_shape = tmp;
-		}
-		else
+	for (int i = 0; i < m_shp_files.size(); i++) {
+		shp_c* shp = m_shp_files[i];
+		shp->m_shape = shape_c::shapeLoad(shp->m_shp_name, 4, 26, 0);//shp_c::shpProc(shp->m_shp_name, m_ll_region);
+		if (!shp->m_shape.size()) 
 			qDebug() << str_error_blank << "shpProc\n";
 	}
 
@@ -583,8 +569,8 @@ void MeteoWizard::accept()
 	QGuiApplication::processEvents();
 	QMessageBox::information(nullptr, "MeteoWizard", str_generation_succeeded);
 
-	QDir::setCurrent(m_wiz_params->working_dir);
-	if (!m_wiz_params->write_settings(*m_wiz_params, m_ll_region, *m_shp_files, "settings.json"))
+	QDir::setCurrent(m_wiz_params.working_dir);
+	if (!m_wiz_params.write_settings(m_wiz_params, m_ll_region, m_shp_files, "settings.json"))
 		qDebug() << str_error_blank << str_saving_nocap << " JSON\n";
 
 	QDialog::accept();
@@ -592,28 +578,41 @@ void MeteoWizard::accept()
 
 void MeteoWizard::process()
 {
-	date_c& d0 = (*m_dates)[0];
-	wchar_t msg_fname[100], jpg_fname[100];
-	cv::Mat* img0;
-	QString channel = channel_tags[m_wiz_params->channel_idx + 1];
+	date_c& d0 = m_dates[0];
+	cv::Mat *img0;
+	QString channel = channel_tags[m_wiz_params.channel_idx + 1];
 	{
-		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
+		if (!QDir::setCurrent(m_wiz_params.working_dir) || !QDir::setCurrent(m_wiz_params.msg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 1\n";
-
-		swprintf(msg_fname, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d0.m_year, d0.m_mon, d0.m_day, d0.m_hour, d0.m_mn);//L"WV_062"
-		img0 = openMsg(msg_fname, m_ll_region);
-		SuplDebugMat(img0);
+		wchar_t buf[100];
+		swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params.msg, m_wiz_params.msg, channel.utf16(), 7, d0.m_year, d0.m_mon, d0.m_day, d0.m_hour, d0.m_mn);//L"WV_062"
+		if (!(img0 = openMsg(buf, m_ll_region))) {
+			qDebug() << str_error_blank << "openMsg error\n";
+			return;
+		}
 	}
-	for (int i = 1; i < m_dates->size(); i++) {
-		date_c& d = (*m_dates)[i];
+	for (int i = 1; i < m_dates.size(); i++) {
+		vpainter_c vpnt;
+		painter_c* pnt0 = new painter_c();
+		vpnt.m_painter.push_back(pnt0);
 
-		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->msg_path))
+		date_c& d = m_dates[i];
+
+		if (!QDir::setCurrent(m_wiz_params.working_dir) || !QDir::setCurrent(m_wiz_params.msg_path))
 			qDebug() << str_error_blank << "SetCurrentDirectory 2\n";
-		swprintf(msg_fname, MSAT_NAME_FORMAT, m_wiz_params->msg, m_wiz_params->msg, channel.utf16(), 7, d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-
-		cv::Mat* img1 = openMsg(msg_fname, m_ll_region);
-		SuplDebugMat(img1);
-
+		cv::Mat* img1;
+		{
+			wchar_t buf[100];
+			swprintf(buf, MSAT_NAME_FORMAT, m_wiz_params.msg, m_wiz_params.msg, channel.utf16(), 7, d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+			if (!(img1 = openMsg(buf, m_ll_region)))
+				continue;
+		}
+		{
+			wchar_t buf[100];
+			swprintf(buf, L"%s_%s_%d_%d_%d_%d_%d.jpg", m_wiz_params.fname_pref.utf16(), channel.utf16(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+			pnt0->m_fname = buf;
+			pnt0->drawImage(*img1);
+		}
 		int daym = date_c::day_in_mon(d0.m_year, d0.m_mon);
 		int dt_mn = 0;
 		if (d.m_mn > d0.m_mn)
@@ -623,54 +622,72 @@ void MeteoWizard::process()
 			|| daym == d0.m_day && d.m_mon == d0.m_mon + 1 && d.m_hour == 0 && d0.m_hour == 23)
 			dt_mn = 60 + d.m_mn - d0.m_mn;
 
-		vpainter_c vpnt;
-		painter_c* pnt1 = new painter_c();
-		pnt1->drawImage(img0);
-		vpnt.m_painter.push_back(pnt1);
-
-		vector<cv::Mat*> vrgb;
-		vector<wstring> vrgb_fname;
-		if (m_rgb_flag->isChecked()) {
+		if (m_rgb_flag->isChecked()) {			
 			for (int k = 0; k < m_rgbSetList->count(); k++) {
 				auto item = m_rgbSetList->item(k);
 				QVariant var = item->data(Qt::UserRole);
 				const params_channels_c& p = qvariant_cast<params_channels_c>(var);
 				QString str = item->text();
 
-				cv::Mat* rgb = makeRgb(d, p);
-				vrgb.push_back(rgb);
-
-				painter_c* pnt2 = new painter_c();
-				pnt2->drawImage(rgb);
-				vpnt.m_painter.push_back(pnt2);
-
-				wchar_t rgb_fname[100];
-				wsprintf(rgb_fname, L"%s-%04d%02d%02d%02d%02d.jpg", str.toStdWString().c_str(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-				vrgb_fname.push_back(wstring(rgb_fname));
+				cv::Mat* rgb;
+				if (!(rgb = makeRgb(d, p)))
+					continue;
+				painter_c *pnt = new painter_c();
+				pnt->drawImage(*rgb);			
+				wchar_t buf[100];
+				wsprintf(buf, L"%s-%04d%02d%02d%02d%02d.jpg", str.toStdWString().c_str(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+				pnt->m_fname = buf;
+				vpnt.m_painter.push_back(pnt);
 			}
 		}
+		calc_c calc;
+		uv_c uv;
+		{
+			Mat_<float>* f0 = new Mat_<float>(img0->rows, img0->cols);
+			Mat_<float>* f1 = new Mat_<float>(img1->rows, img1->cols);
+			*f0 = *img0 * (1. / 1024);
+			*f1 = *img1 * (1. / 1024);
 
-		vpnt.outputUV(m_ll_region, m_shp_files, m_wiz_params, dt_mn, img0, img1);
-
-		if (!QDir::setCurrent(m_wiz_params->working_dir) || !QDir::setCurrent(m_wiz_params->jpg_path))
-			qDebug() << str_error_blank << "SetCurrentDirectory 3\n";
-		swprintf(jpg_fname, L"%s_%s_%d_%d_%d_%d_%d.jpg", m_wiz_params->fname_pref.utf16(), channel.utf16(), d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
-
-		imwrite(SuplName16to8(jpg_fname), *vpnt.m_painter[0]->m_rgb);
-
-		for (int m = 0; m < vrgb.size(); m++) {
-			imwrite(SuplName16to8(vrgb_fname[m].c_str()), *vpnt.m_painter[m + 1]->m_rgb);
-			delete vrgb[m];
+			calc.m_tmplSz = Size(32, 32);
+			calc.m_srchSz = Size(64, 64);
+			calc.m_rot = true;
+			calc.m_phi = 15;
+			calc.m_da = 0.5;
+			calc.m_method = 0;
+			int step = LON_SCALE * m_ll_region.m_ll_step;
+			uv.tplMatchTpl(f0, f1, step, step, calc);
+			{
+				painter_c *pnt = new painter_c();
+				wchar_t buf[100];
+				wsprintf(buf, L"Rot-%04d%02d%02d%02d%02d.jpg", d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+				pnt->m_fname = buf;
+				pnt->drawImage(*uv.m_rot);
+				vpnt.m_painter.push_back(pnt);
+			}
+			{
+				painter_c *pnt = new painter_c();
+				wchar_t buf[100];
+				wsprintf(buf, L"KDif-%04d%02d%02d%02d%02d.jpg", d.m_year, d.m_mon, d.m_day, d.m_hour, d.m_mn);
+				pnt->m_fname = buf;
+				pnt->drawImage(*uv.m_kdif);
+				vpnt.m_painter.push_back(pnt);
+			}
 		}
+		vpnt.outputUV(calc, uv, m_ll_region, m_shp_files, m_wiz_params, dt_mn, img0->size());
+		
+		if (!QDir::setCurrent(m_wiz_params.working_dir) || !QDir::setCurrent(m_wiz_params.jpg_path))
+			qDebug() << str_error_blank << "SetCurrentDirectory 3\n";
 
-		delete img0;
+		for (int m = 0; m < vpnt.m_painter.size(); m++)
+			imwrite(SuplName16to8(vpnt.m_painter[m]->m_fname.c_str()), *vpnt.m_painter[m]->m_rgb);
+
 		img0 = img1;
 	}
-	delete img0;
 }
 
 int main(int argc, char* argv[])
 {
+	CoInitialize(NULL);
 	QApplication app(argc, argv);
 	
 	MeteoWizard* dw = new MeteoWizard(nullptr);
@@ -691,5 +708,39 @@ int main(int argc, char* argv[])
 	app.exec();
 
 	delete dw;
+	
 	return 0;
 }
+
+/*
+ll_region_c region;
+region.m_x = 20;
+region.m_width = 20;
+region.m_y = 40;
+region.m_height = 20;
+region.m_ll_step = 1;
+
+region.geo2Rect();
+
+cv::Mat *img0 = MeteoWizard::openMsg(L"H-000-MSG4__-MSG4________-WV_062___-000008___-201911211200-C_", region);
+cv::Mat *img1 = MeteoWizard::openMsg(L"H-000-MSG4__-MSG4________-WV_062___-000008___-201911211215-C_", region);
+
+uv_c uv;
+calc_c calc;
+calc.m_rot = true;
+calc.m_tmplSz = Size(32, 32);
+calc.m_srchSz = Size(64, 64);
+calc.m_phi = 30;
+calc.m_da = 1;
+calc.m_method = 0;
+double step = LON_SCALE * region.m_ll_step;
+
+cv::Mat* f0 = new cv::Mat(img0->size(), CV_32FC1);
+cv::Mat* f1 = new cv::Mat(img1->size(), CV_32FC1);
+img0->convertTo(*f0, f0->type(), 1. / 1024);
+img1->convertTo(*f1, f1->type(), 1. / 1024);
+
+uv.tplMatchTpl(f0, f1, step, step, calc);
+cv::Mat &kd = uv.m_kdif;
+cv::Mat& rot = uv.m_rot;
+*/

@@ -26,7 +26,6 @@ public:
 		memset(rgb_channels, 0, sizeof(rgb_channels));
 	};
 
-	bool write_settings(const wiz_params_c& wiz, ll_region_c* rg, const std::vector<shp_c*>& shp_files, const QString& fname);
-	bool read_settings(wiz_params_c& wiz, ll_region_c* rg, std::vector<shp_c*>& shp_files, const QString& fname);
+	bool write_settings(const wiz_params_c& wiz, const ll_region_c& rg, const std::vector<shp_c*>& shp_files, const QString& fname);
+	bool read_settings(wiz_params_c& wiz, ll_region_c& rg, std::vector<shp_c*>& shp_files, const QString& fname);
 };
-

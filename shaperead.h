@@ -23,7 +23,7 @@ public:
     delete m_pline;
   }
 
-  static vector<shape_c*>*              shapeLoad(QString name, int dbf_name, int dbf_pop, int charset);
+  static vector<shape_c*>               shapeLoad(QString name, int dbf_name, int dbf_pop, int charset);
   static vector<pair<string, int>>*     getDbfFldNames(QString fname);
   static int                            dbfFldIdx(const string& attr, const vector<pair<string, int>>& flds);
 };

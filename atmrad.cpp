@@ -8,6 +8,7 @@
 #include "supl.h"
 
 #include "atmrad.h"
+#include "atmrad1.h"
 #include "region.h"
 
 #ifndef FALSE
@@ -23,7 +24,7 @@ const double BIAS[T_13_4] = { 0,        0,        0,        3.471,    2.219,    
 const double SLOP[T_13_4] = { 0.02295,  0.02922,  0.02328,  0.00366,  0.0083,   0.03862,  0.12674, /*0.10396,*/  0.20503,  0.22231,   0.15761 };
 const double OFFS[T_13_4] = { -1.17046, -1.49001, -1.18724, -0.18659, -0.42422, -1.96972, -6.46392, /*-5.30202,*/ -10.45676,-11.33788, -8.03795 };
 
-void AtmradGetTb(cv::Mat* v, int dt, cv::Mat* watt)
+bool AtmradGetTb(cv::Mat& v, int dt, cv::Mat& watt)
 {
 	if (dt <= T_12_0) {
 		const double C1 = 1.19104e-5;
@@ -32,19 +33,19 @@ void AtmradGetTb(cv::Mat* v, int dt, cv::Mat* watt)
 		int i = dt - 1;
 		double nucw = NUCW[i];
 
-		v->convertTo(*watt, watt->type(), SLOP[i], OFFS[i]);
-		cv::divide(C1 * nucw * nucw * nucw, *watt, *watt);
-		*watt += cv::Scalar(1);
-		cv::log(*watt, *watt);
-		cv::divide(C2 * nucw, *watt, *watt);
-		*watt += cv::Scalar(-BIAS[i]);
+		v.convertTo(watt, watt.type(), SLOP[i], OFFS[i]);
+		cv::divide(C1 * nucw * nucw * nucw, watt, watt);
+		watt += cv::Scalar(1);
+		cv::log(watt, watt);
+		cv::divide(C2 * nucw, watt, watt);
+		watt += cv::Scalar(-BIAS[i]);
+		return true;
 	}
-	else {
-		printf("%s:%d", __FILE__, __LINE__);
-	}
+	else
+		return false;
 }
 
-void Gamma(cv::Mat* src, cv::Mat* dst, double gamma)
+void Gamma(const cv::Mat& src, cv::Mat& dst, double gamma)
 {
 	int i;
 	uchar table[256];
@@ -53,22 +54,20 @@ void Gamma(cv::Mat* src, cv::Mat* dst, double gamma)
 	for (i = 0; i < 256; i++)
 		table[i] = (int)(pow((double)i / 255.0, 1.0 / gamma) * 255.0);
 
-	cv::LUT(*src, m, *dst);
+	cv::LUT(src, m, dst);
 }
  
-cv::Mat* AtmradMakeDif(slot_c* src, const int(chnls)[6], const double(thresh)[9])
+cv::Mat* AtmradMakeDif(slot_c& src, const int(chnls)[6], const double(thresh)[9], double *calibr)
 {
-	cv::Mat* map = NULL;
-	int ret = FALSE;
-	int w = src->m_img[chnls[0]]->cols;
-	int h = src->m_img[chnls[0]]->rows;
-
-	cv::Mat tmp[4] = { cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1) };
+	int w = src.m_img[chnls[0]]->cols;
+	int h = src.m_img[chnls[0]]->rows;
+	
 	cv::Mat* rgb = new cv::Mat(h, w, CV_8UC3);
+	cv::Mat tmp[4] = { cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1), cv::Mat(h, w, CV_8UC1) };
 	cv::Mat tmp32(h, w, CV_32F), b32(h, w, CV_32F);
 	//tmp[3] = 255;
-	if (!rgb)
-		goto end;
+	//if (!rgb)
+		//goto end;
 	{
 		for (int i = 0; i < 3; i++) {
 			double min0 = thresh[3 * i];
@@ -83,16 +82,23 @@ cv::Mat* AtmradMakeDif(slot_c* src, const int(chnls)[6], const double(thresh)[9]
 				max0 = m;
 				inv = TRUE;
 			}
-			if (!src->m_img[t1])
-				goto end;
+			//if (src->m_img[t1])
+				//goto end;
 
-			if (t1 > T_01_6) // && t1 != T_HRV)
-				AtmradGetTb(src->m_img[t1], t1, &tmp32);
+			if (t1 > T_01_6) { // && t1 != T_HRV) 
+				if (!calibr)
+					AtmradGetTb(*src.m_img[t1], t1, tmp32);
+				else 
+					AtmradGetTb1(*src.m_img[t1], t1, tmp32, calibr);
+			}
 			else
-				src->m_img[t1]->convertTo(tmp32, CV_32F);
+				src.m_img[t1]->convertTo(tmp32, CV_32F);
 
 			if (t2 != T_NONE) {
-				AtmradGetTb(src->m_img[t2], t2, &b32);
+				if (!calibr)
+					AtmradGetTb(*src.m_img[t2], t2, b32);
+				else
+					AtmradGetTb1(*src.m_img[t2], t2, b32, calibr);
 				tmp32 -= b32;
 			}
 			if (max0 < 1000)
@@ -107,17 +113,11 @@ cv::Mat* AtmradMakeDif(slot_c* src, const int(chnls)[6], const double(thresh)[9]
 			if (inv)
 				cv::bitwise_not(tmp[i], tmp[i]);
 			if (gamma != 1.0)
-				Gamma(&tmp[i], &tmp[i], gamma);
+				Gamma(tmp[i], tmp[i], gamma);
 		}
 
 		cv::merge(tmp, 3, *rgb);
-		ret = TRUE;
+		return rgb;
 	}
-end:
-	if (!ret) {
-		delete rgb;
-		printf("%s:%d", __FILE__, __LINE__);
-		return NULL;
-	}
-	return rgb;
+	return nullptr;
 }

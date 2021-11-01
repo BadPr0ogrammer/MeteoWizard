@@ -6,13 +6,13 @@
 #include <opencv2/core/core.hpp>
 
 #include "inc.h"
+#include "region.h"
+#include "wizparams.h"
 
 class date_c;
 class shp_c;
-class ll_region_c;
-class wiz_params_c;
 class SelectColorButton;
-class ModelRender;
+//class ModelRender;
 class palettes_c;
 
 class params_channels_c : QObject {
@@ -62,15 +62,15 @@ public:
 
 	QQuickWidget* m_osm;
 
-	std::vector<date_c>* m_dates;
-	std::vector<shp_c*>* m_shp_files;
-	ll_region_c* m_ll_region;
-	wiz_params_c* m_wiz_params;
+	std::vector<date_c> m_dates;
+	std::vector<shp_c*> m_shp_files;
+	ll_region_c m_ll_region;
+	wiz_params_c m_wiz_params;
 
 	bool m_json;
 
-	ModelRender* m_modelRender;
-	palettes_c* m_palettes;
+	//ModelRender* m_modelRender;
+	//palettes_c m_palettes;
 	void checkColorTF(std::vector<double>& xv, std::vector<double>& yv);
 	QDoubleSpinBox* m_normSp[3];
 	QDoubleSpinBox* m_cutSp[3];
@@ -87,7 +87,7 @@ public:
 	QWizardPage* createRegionPage();
 	QWizardPage* createPostProcPage();
 
-	cv::Mat* openMsg(const wchar_t* fname, ll_region_c* ll_region);
+	static cv::Mat* openMsg(const wchar_t* fname, ll_region_c& ll_region);
 	cv::Mat* makeRgb(date_c& date, const params_channels_c& par_chnl);
 	void process();
 
